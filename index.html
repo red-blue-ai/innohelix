@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>赫序科技 InnoHelix</title>
+<meta name="description" content="赫序科技 InnoHelix —— 复杂热解气催化升级模块，把废塑料、废轮胎产生的波动热解气升级为稳定合成气，连接可持续航空燃料（SAF）的下游合成。">
+<meta name="theme-color" content="#0a0b0b">
+<meta property="og:title" content="InnoHelix — The next hydrocarbon, by design.">
+<meta property="og:description" content="Catalytic upgrading for complex pyrolysis gas — from industrial waste to synthesis-ready syngas for sustainable aviation fuel.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- fonts load without blocking: where Google is unreachable (mainland China) the page renders at once in PingFang / YaHei -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200..700&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<div class="atmo" aria-hidden="true"><i class="b1"></i><i class="b2"></i></div>
+<div class="ghost" aria-hidden="true">INNOHELIX</div>
+<canvas id="world" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i></i></div>
+<div class="cursor" aria-hidden="true"><i class="ring"></i><i class="dot"></i></div>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <img class="loader__mark" src="assets/img/mark-light.png" alt="">
+    <div class="loader__bar"><i></i></div>
+  </div>
+</div>
+
+<!-- ===================================================== TOP BAR -->
+<header class="top" id="top">
+  <div class="top__in">
+    <a class="logo" href="#home" aria-label="InnoHelix home">
+      <img class="logo__mark" src="assets/img/mark-light.png" alt="">
+      <img class="logo__word on-dark" src="assets/img/wordmark-light.png" alt="INNOHELIX">
+      <img class="logo__word on-light" src="assets/img/wordmark-dark.png" alt="">
+    </a>
+    <nav class="menu" aria-label="Primary">
+      <a href="#product" data-route="product"><span lang="zh-CN">产品</span><span lang="en">Product</span></a>
+      <a href="#technology" data-route="technology"><span lang="zh-CN">技术</span><span lang="en">Technology</span></a>
+      <a href="#record" data-route="record"><span lang="zh-CN">成果</span><span lang="en">Track record</span></a>
+      <a href="#team" data-route="team"><span lang="zh-CN">团队</span><span lang="en">Team</span></a>
+    </nav>
+    <div class="top__right">
+      <div class="lang" role="group" aria-label="Language"><button type="button" data-set="zh">中</button><span>/</span><button type="button" data-set="en">EN</button></div>
+      <a class="btn btn--solid btn--sm" href="#contact" data-route="contact"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></a>
+      <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+<div class="sheet" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="#home"><span lang="zh-CN">首页</span><span lang="en">Home</span></a>
+    <a href="#product"><span lang="zh-CN">产品</span><span lang="en">Product</span></a>
+    <a href="#technology"><span lang="zh-CN">技术</span><span lang="en">Technology</span></a>
+    <a href="#record"><span lang="zh-CN">成果</span><span lang="en">Track record</span></a>
+    <a href="#team"><span lang="zh-CN">团队</span><span lang="en">Team</span></a>
+    <a href="#contact"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></a>
+  </nav>
+</div>
+
+<main id="app">
+
+<!-- ================================================================== HOME -->
+<div class="view" data-view="home" data-title-zh="赫序科技 InnoHelix" data-title-en="InnoHelix — The next hydrocarbon, by design">
+
+  <section class="hero" data-stage="helix">
+    <div class="wrap hero__main">
+      <div class="hero__top enter" style="--d:150ms">
+        <span><span lang="zh-CN">赫序科技</span><span lang="en">InnoHelix</span> — Waste · Carbon · Fuel</span>
+        <span class="hero__tag">The next hydrocarbon, by design.</span>
+      </div>
+      <h1 class="d-xxl">
+        <span lang="zh-CN"><span class="ln"><span>把工业固废，</span></span><span class="ln" style="--i:1"><span>变成航空燃料。</span></span></span>
+        <span lang="en"><span class="ln"><span>Industrial waste,</span></span><span class="ln" style="--i:1"><span>made into jet fuel.</span></span></span>
+      </h1>
+      <div class="hero__foot">
+        <p class="lead enter" style="--d:600ms" lang="zh-CN">赫序科技研发<b>复杂热解气催化升级模块</b>：把废塑料、废轮胎产生的波动热解气，升级为适用于费托与甲醇合成的稳定原料气，接上可持续航空燃料（SAF）的生产链。</p>
+        <p class="lead enter" style="--d:600ms" lang="en">InnoHelix builds a <b>catalytic upgrading module for complex pyrolysis gas</b> — turning the volatile gas from waste plastics and tyres into stable feed gas for Fischer–Tropsch and methanol synthesis, the routes to sustainable aviation fuel (SAF).</p>
+        <div class="cta-row enter" style="--d:750ms">
+          <a class="btn btn--solid" href="#product"><span lang="zh-CN">了解产品</span><span lang="en">See the product</span><span class="arr">→</span></a>
+          <a class="btn btn--line" href="#technology"><span lang="zh-CN">核心技术</span><span lang="en">Core technology</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="hero__meta enter" style="--d:900ms">
+        <div class="meta"><b>70%</b><span lang="zh-CN">欧盟 2050 年 SAF 最低掺混比例</span><span lang="en">EU minimum SAF share by 2050</span></div>
+        <div class="meta"><b>0.8%</b><span lang="zh-CN">2026 年 SAF 占全球航油用量（IATA 预测）</span><span lang="en">SAF share of global jet fuel, 2026 (IATA forecast)</span></div>
+        <div class="meta"><b>81</b><span lang="zh-CN">团队及相关机构累计专利基础</span><span lang="en">Patents across the team and partner institutions</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec manifesto" data-stage="chaos" data-dim=".8">
+    <div class="wrap">
+      <div lang="zh-CN">
+        <p data-split>长途航班无法电气化，航空减碳只能靠液体燃料。</p>
+        <p data-split>而每天产生的废塑料、废轮胎里，藏着大量从未被回收的碳。</p>
+        <p data-split>炼化不必依赖石油——废弃物，就可以是未来。</p>
+      </div>
+      <div lang="en">
+        <p data-split>Long-haul flight can't be electrified. Aviation can only decarbonise with liquid fuel.</p>
+        <p data-split>Meanwhile, waste plastics and tyres pile up — full of carbon nobody recovers.</p>
+        <p data-split>Refining doesn't have to depend on oil. Waste can be the future.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-stage="jet" data-dim="1">
+    <div class="wrap">
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">为什么是现在</span><span lang="en">Why now</span></div>
+      <div class="now">
+        <h2 class="d-l" data-reveal-lines>
+          <span lang="zh-CN"><span class="ln"><span>需求，</span></span><span class="ln" style="--i:1"><span class="dim">已经写进法规。</span></span></span>
+          <span lang="en"><span class="ln"><span>Demand is already</span></span><span class="ln" style="--i:1"><span class="dim">written into law.</span></span></span>
+        </h2>
+        <div class="big" data-reveal="up">
+          <div class="row"><span class="num dim">$<span data-count="3.1" data-dec="1">3.1</span>B</span><span class="arr">→</span><span class="num">$<span data-count="15.3" data-dec="1">15.3</span>B</span></div>
+          <p class="body"><span lang="zh-CN">全球 SAF 燃料收入：2025 年估算 → 2033 年预测，预测年复合增长率 24.6%。</span><span lang="en">Global SAF revenue: 2025 estimate → 2033 forecast, at a forecast 24.6% CAGR.</span></p>
+        </div>
+      </div>
+      <div class="facts" data-reveal="up">
+        <div><b>6%</b><span lang="zh-CN">欧盟 2030 年 SAF 最低供应比例</span><span lang="en">EU minimum SAF share, 2030</span></div>
+        <div><b>10%</b><span lang="zh-CN">英国 2030 年 SAF 义务目标</span><span lang="en">UK SAF mandate, 2030</span></div>
+        <div><b>70%</b><span lang="zh-CN">欧盟 2050 年 SAF 最低供应比例</span><span lang="en">EU minimum SAF share, 2050</span></div>
+        <div><b>2.4 Mt</b><span lang="zh-CN">2026 年全球 SAF 预计产量，仅占航油 0.8%</span><span lang="en">Global SAF output in 2026 — just 0.8% of jet fuel</span></div>
+      </div>
+      <p class="src"><span lang="zh-CN">来源：</span><span lang="en">Sources: </span>Grand View Research (2026) · European Commission · UK DfT · IATA (2026)</p>
+    </div>
+  </section>
+
+  <section class="sec explore" data-stage="loop" data-dim=".35">
+    <div class="wrap">
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">认识赫序</span><span lang="en">Explore</span></div>
+      <div class="tiles">
+        <a class="tile tile--light" href="#product" data-reveal="up">
+          <div class="tile__txt"><span class="tile__k"><span lang="zh-CN">产品</span><span lang="en">Product</span></span><h3><span lang="zh-CN">复杂热解气进，稳定合成气出。</span><span lang="en">Complex gas in. Synthesis-ready syngas out.</span></h3></div>
+          <img src="assets/img/module.webp" alt="" loading="lazy" class="tile__module"><span class="tile__go">→</span>
+        </a>
+        <a class="tile" href="#technology" data-reveal="up" style="--i:1">
+          <img src="assets/img/lab-pilot.webp" alt="" loading="lazy" class="tile__bg">
+          <div class="tile__txt"><span class="tile__k"><span lang="zh-CN">技术</span><span lang="en">Technology</span></span><h3><span lang="zh-CN">先看清气体，先保护，再深度转化。</span><span lang="en">Read the gas. Protect first. Then convert.</span></h3></div><span class="tile__go">→</span>
+        </a>
+        <a class="tile" href="#record" data-reveal="up">
+          <img src="assets/img/lab-batch.webp" alt="" loading="lazy" class="tile__bg">
+          <div class="tile__txt"><span class="tile__k"><span lang="zh-CN">成果</span><span lang="en">Track record</span></span><h3><span lang="zh-CN">已发表的研究，81 项专利基础。</span><span lang="en">Published research. An 81-patent base.</span></h3></div><span class="tile__go">→</span>
+        </a>
+        <a class="tile" href="#team" data-reveal="up" style="--i:1">
+          <img src="assets/img/field-3.webp" alt="" loading="lazy" class="tile__bg">
+          <div class="tile__txt"><span class="tile__k"><span lang="zh-CN">团队</span><span lang="en">Team</span></span><h3><span lang="zh-CN">牛津、剑桥、中科院、清华。</span><span lang="en">Oxford, Cambridge, CAS, Tsinghua.</span></h3></div><span class="tile__go">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================== PRODUCT -->
+<div class="view" data-view="product" data-title-zh="产品 · 赫序科技" data-title-en="Product · InnoHelix" hidden>
+
+  <section class="sec paper product" data-stage="none" data-paper>
+    <div class="wrap">
+      <div class="label center" data-reveal="fade"><span lang="zh-CN">产品</span><span lang="en">Product</span></div>
+      <h1 class="d-xl product__title" data-reveal-lines>
+        <span lang="zh-CN"><span class="ln"><span>复杂热解气进。</span></span><span class="ln" style="--i:1"><span>稳定合成气出。</span></span></span>
+        <span lang="en"><span class="ln"><span>Complex gas in.</span></span><span class="ln" style="--i:1"><span>Synthesis-ready syngas out.</span></span></span>
+      </h1>
+      <p class="lead product__sub" data-reveal="up" lang="zh-CN">InnoHelix 复杂热解气催化升级模块——接入现有热解 / 气化装置，输出满足下游催化剂要求的稳定合成气中间体。</p>
+      <p class="lead product__sub" data-reveal="up" lang="en">The InnoHelix Complex Pyrolysis Gas Upgrading Module plugs into existing pyrolysis and gasification units and delivers a stable syngas intermediate that downstream catalysts can trust.</p>
+
+      <div class="stage" data-reveal="scale">
+        <img class="stage__img" src="assets/img/module.webp" alt="InnoHelix 复杂热解气催化升级模块 / the upgrading module" width="1500" height="998">
+        <div class="hot" style="--x:28.1%;--y:40.8%;--i:0"><button type="button" aria-label="01">1</button><span class="lab"><span lang="zh-CN">两级立式催化反应器</span><span lang="en">Two-stage vertical catalytic reactors</span></span></div>
+        <div class="hot" style="--x:57.4%;--y:55.7%;--i:1"><button type="button" aria-label="02">2</button><span class="lab"><span lang="zh-CN">换热与气体调质单元</span><span lang="en">Heat exchange &amp; gas conditioning</span></span></div>
+        <div class="hot" style="--x:34.5%;--y:12.9%;--i:2"><button type="button" aria-label="03">3</button><span class="lab"><span lang="zh-CN">管路、阀门及压力仪表</span><span lang="en">Piping, valves &amp; pressure instruments</span></span></div>
+        <div class="hot" style="--x:84%;--y:49.8%;--i:3"><button type="button" aria-label="04">4</button><span class="lab"><span lang="zh-CN">气体采样与控制面板</span><span lang="en">Gas sampling &amp; control panel</span></span></div>
+        <div class="hot" style="--x:93.2%;--y:53.7%;--i:4"><button type="button" aria-label="05">5</button><span class="lab"><span lang="zh-CN">独立电气控制柜</span><span lang="en">Electrical control cabinet</span></span></div>
+        <div class="hot" style="--x:42.2%;--y:77.7%;--i:5"><button type="button" aria-label="06">6</button><span class="lab"><span lang="zh-CN">一体化可运输底座</span><span lang="en">Integrated transportable skid</span></span></div>
+      </div>
+      <p class="src stage__cap"><span lang="zh-CN">点击编号，查看模块组成</span><span lang="en">Tap a number to explore the module</span></p>
+
+      <div class="chain" data-reveal="up">
+        <div class="node"><span class="t"><span lang="zh-CN">复杂废弃物</span><span lang="en">Complex waste</span></span><span class="s"><span lang="zh-CN">废塑料、废轮胎等碳基固废</span><span lang="en">Waste plastics, tyres and other carbon-based solids</span></span></div>
+        <div class="node"><span class="t"><span lang="zh-CN">热解 / 气化</span><span lang="en">Pyrolysis / gasification</span></span><span class="s"><span lang="zh-CN">产生组分复杂、波动的热解气</span><span lang="en">Produces complex, fluctuating gas</span></span></div>
+        <div class="node node--core"><span class="t">InnoHelix</span><span class="s"><span lang="zh-CN">成分识别 · 两级重整 · 过程控制</span><span lang="en">Fingerprinting · two-stage reforming · process control</span></span></div>
+        <div class="node"><span class="t"><span lang="zh-CN">稳定合成气</span><span lang="en">Stable syngas</span></span><span class="s"><span lang="zh-CN">H₂ + CO 中间体</span><span lang="en">H₂ + CO intermediate</span></span></div>
+        <div class="node"><span class="t"><span lang="zh-CN">SAF 等下游产品</span><span lang="en">SAF &amp; downstream</span></span><span class="s"><span lang="zh-CN">费托 / 甲醇等合成路线</span><span lang="en">Fischer–Tropsch, methanol and more</span></span></div>
+      </div>
+
+      <div class="ifaces">
+        <div class="iface" data-reveal="up" style="--i:0"><h4><span lang="zh-CN">接入现有热解系统</span><span lang="en">Connects to existing pyrolysis</span></h4><p lang="zh-CN">不重建前端装置，以模块化改造增加产品路径。</p><p lang="en">No rebuild of the front end — a retrofit that adds a product route.</p></div>
+        <div class="iface" data-reveal="up" style="--i:1"><h4><span lang="zh-CN">适配复杂、波动气源</span><span lang="en">Handles variable feed gas</span></h4><p lang="zh-CN">焦油、轻烃与杂质含量高的气体，也能稳定处理。</p><p lang="en">Built for gas heavy in tar, light hydrocarbons and impurities.</p></div>
+        <div class="iface" data-reveal="up" style="--i:2"><h4><span lang="zh-CN">输出稳定合成气中间体</span><span lang="en">Delivers stable syngas</span></h4><p lang="zh-CN">给下游一个明确的合成气质量接口。</p><p lang="en">A clear syngas-quality interface for whatever comes next.</p></div>
+        <div class="iface" data-reveal="up" style="--i:3"><h4><span lang="zh-CN">模块化向下游延伸</span><span lang="en">Modular downstream reach</span></h4><p lang="zh-CN">费托、甲醇、制氢——按客户路线灵活组合。</p><p lang="en">Fischer–Tropsch, methanol, hydrogen — configured per route.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-stage="reactor" data-dim=".55">
+    <div class="wrap value">
+      <div>
+        <div class="label rule" data-reveal="fade"><span lang="zh-CN">客户价值</span><span lang="en">What you get</span></div>
+        <h2 class="d-xl" style="margin-top:30px" data-reveal-lines>
+          <span lang="zh-CN"><span class="ln"><span>改造，</span></span><span class="ln" style="--i:1"><span class="dim">优于重建。</span></span></span>
+          <span lang="en"><span class="ln"><span>Retrofit.</span></span><span class="ln" style="--i:1"><span class="dim">Don't rebuild.</span></span></span>
+        </h2>
+        <p class="lead" style="margin-top:28px" data-reveal="up" lang="zh-CN">不动前端装置，只加一个模块，让已有的热解气走进更高价值的合成路线。</p>
+        <p class="lead" style="margin-top:28px" data-reveal="up" lang="en">Keep the front end. Add one module. Send the gas you already make into higher-value synthesis.</p>
+      </div>
+      <ul class="vlist">
+        <li data-reveal="up"><h4>H₂ + CO <span lang="zh-CN">增量</span><span lang="en">uplift</span></h4><p lang="zh-CN">把焦油、甲烷和轻烃转化为更高价值的合成气。</p><p lang="en">Tar, methane and light hydrocarbons become higher-value syngas.</p></li>
+        <li data-reveal="up"><h4><span lang="zh-CN">更少停机</span><span lang="en">Less downtime</span></h4><p lang="zh-CN">减少下游催化剂中毒和非计划停机。</p><p lang="en">Fewer poisoned downstream catalysts, fewer unplanned stops.</p></li>
+        <li data-reveal="up"><h4><span lang="zh-CN">更宽原料窗口</span><span lang="en">Wider feedstock window</span></h4><p lang="zh-CN">通过气质标准化，扩大可接受的原料范围。</p><p lang="en">Gas normalisation widens the feedstock you can accept.</p></li>
+        <li data-reveal="up"><h4><span lang="zh-CN">模块化部署</span><span lang="en">Modular deployment</span></h4><p lang="zh-CN">标准化模块并联，按气量灵活配置。</p><p lang="en">Standardised trains in parallel, sized to your gas flow.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <a class="next" href="#technology" data-stage="reactor" data-dim=".3"><span class="next__k"><span lang="zh-CN">下一页</span><span lang="en">Next</span></span><span class="next__t"><span lang="zh-CN">核心技术</span><span lang="en">Technology</span><span class="arr">→</span></span></a>
+</div>
+
+<!-- ================================================================== TECHNOLOGY -->
+<div class="view" data-view="technology" data-title-zh="技术 · 赫序科技" data-title-en="Technology · InnoHelix" hidden>
+
+  <section class="sec page-head" data-stage="chaos" data-dim=".55">
+    <div class="wrap">
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">技术</span><span lang="en">Technology</span></div>
+      <div class="split2">
+        <h1 class="d-xl" data-reveal-lines>
+          <span lang="zh-CN"><span class="ln"><span>两个错配。</span></span><span class="ln" style="--i:1"><span class="dim">一个断点。</span></span></span>
+          <span lang="en"><span class="ln"><span>Two mismatches.</span></span><span class="ln" style="--i:1"><span class="dim">One missing link.</span></span></span>
+        </h1>
+        <p class="lead" data-reveal="up" lang="zh-CN">固废需要高值出路，航空需要低碳燃料。两端都在，中间缺一个能稳定工作的接口——这正是我们做的事。</p>
+        <p class="lead" data-reveal="up" lang="en">Waste needs a high-value outlet. Aviation needs low-carbon fuel. Both ends exist; the reliable interface between them is what we build.</p>
+      </div>
+      <div class="sides">
+        <article class="side side--waste" data-reveal="up">
+          <div class="photo"><img src="assets/img/waste.webp" alt="" loading="lazy"></div>
+          <span class="k"><span lang="zh-CN">固废侧</span><span lang="en">Waste side</span></span>
+          <h3><span lang="zh-CN">处置成本高，去向受限。</span><span lang="en">Costly to dispose of, nowhere to go.</span></h3>
+          <p class="body" lang="zh-CN">低值废塑料、复合包装、废旧纺织物与混合有机固废持续产生，组分复杂、污染度高。填埋、焚烧发电和物理回收都无法覆盖低值料，其中的碳资源没有被回收。</p>
+          <p class="body" lang="en">Low-value plastics, composite packaging, textiles and mixed organic waste keep coming — complex and contaminated. Landfill, incineration and mechanical recycling can't handle low-grade material, and its carbon goes unrecovered.</p>
+        </article>
+        <article class="side" data-reveal="up" style="--i:1">
+          <span class="k"><span lang="zh-CN">航空侧</span><span lang="en">Aviation side</span></span>
+          <h3><span lang="zh-CN">必须减碳，但 SAF 供给不足。</span><span lang="en">It must decarbonise — but SAF is scarce.</span></h3>
+          <p class="body" lang="zh-CN">商用大飞机完全依赖液体燃料，SAF 是唯一合规的替代液体燃料。当前 SAF 占航油不足 1%，现有 HEFA 路线受废弃油脂供给上限约束。</p>
+          <p class="body" lang="en">Commercial jets run on liquid fuel, and SAF is the only compliant drop-in alternative. Today SAF is under 1% of jet fuel, and the dominant HEFA route is capped by the supply of waste oils.</p>
+          <div class="mandate" data-reveal-self>
+            <div class="bar" style="--i:0"><span class="v">2%</span><span class="fill" style="--h:3%"></span><span class="y">2025</span></div>
+            <div class="bar" style="--i:1"><span class="v">6%</span><span class="fill" style="--h:9%"></span><span class="y">2030</span></div>
+            <div class="bar" style="--i:2"><span class="v">70%</span><span class="fill" style="--h:100%"></span><span class="y">2050</span></div>
+          </div>
+          <span class="src"><span lang="zh-CN">欧盟 SAF 强制掺混比例 · 欧盟委员会</span><span lang="en">EU minimum SAF blending mandate · European Commission</span></span>
+        </article>
+      </div>
+      <div class="gap">
+        <h2 class="d-l" data-reveal-lines>
+          <span lang="zh-CN"><span class="ln"><span>上游热解与下游合成都已存在，</span></span><span class="ln" style="--i:1"><span class="dim">复杂热解气却无法稳定衔接。</span></span></span>
+          <span lang="en"><span class="ln"><span>Pyrolysis upstream. Synthesis downstream.</span></span><span class="ln" style="--i:1"><span class="dim">Complex gas can't connect them reliably.</span></span></span>
+        </h2>
+        <p class="gap__why" data-reveal="up"><span lang="zh-CN">组分杂</span><span lang="zh-CN">波动大</span><span lang="zh-CN">催化剂易中毒</span><span lang="en">Messy composition</span><span lang="en">High variability</span><span lang="en">Catalyst poisoning</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-stage="reactor" data-dim=".6">
+    <div class="wrap">
+      <div class="tech__grid">
+        <aside class="tech__rail">
+          <h2 class="d-l" data-reveal-lines>
+            <span lang="zh-CN"><span class="ln"><span>三项核心技术，</span></span><span class="ln" style="--i:1"><span class="dim">一个稳定接口。</span></span></span>
+            <span lang="en"><span class="ln"><span>Three technologies.</span></span><span class="ln" style="--i:1"><span class="dim">One stable interface.</span></span></span>
+          </h2>
+          <div class="tech__big" aria-hidden="true"><span class="on">01</span><span>02</span><span>03</span></div>
+          <ol class="toc">
+            <li class="on"><span lang="zh-CN">复杂热解气成分识别</span><span lang="en">Pyrolysis-gas fingerprinting</span></li>
+            <li><span lang="zh-CN">两级催化重整</span><span lang="en">Two-stage catalytic reforming</span></li>
+            <li><span lang="zh-CN">催化剂—反应器—过程控制耦合</span><span lang="en">Catalyst–reactor–control coupling</span></li>
+          </ol>
+        </aside>
+
+        <div class="arts">
+          <article class="art" data-art="0">
+            <span class="art__k"><span lang="zh-CN">成分识别</span><span lang="en">Gas component identification</span></span>
+            <h3 class="d-m"><span lang="zh-CN">先看清气体，再决定怎么升级。</span><span lang="en">Read the gas first. Then decide how to upgrade it.</span></h3>
+            <p class="body" lang="zh-CN">为升级模块提供入口气体表征与运行设定：识别复杂热解气的组分与波动，转化为催化剂选择与运行参数。</p>
+            <p class="body" lang="en">Inlet characterisation for the module: we identify what's in the gas and how it fluctuates, and translate it into catalyst selection and operating set-points.</p>
+            <div class="io panel">
+              <div><span class="io__h"><span lang="zh-CN">入口组分</span><span lang="en">Inlet gas</span></span>
+                <ul class="io__list mono"><li>H₂</li><li>CO</li><li>CO₂</li><li>CH₄</li><li>C₂–C₄</li><li class="warn"><span lang="zh-CN">焦油</span><span lang="en">Tar</span></li><li class="warn">S / Cl / N</li></ul></div>
+              <div><span class="io__h"><span lang="zh-CN">运行设定</span><span lang="en">Set-points</span></span>
+                <ul class="io__list"><li><span lang="zh-CN">催化剂选择</span><span lang="en">Catalyst selection</span></li><li><span lang="zh-CN">蒸汽碳比</span><span lang="en">Steam-to-carbon ratio</span></li><li><span lang="zh-CN">温度</span><span lang="en">Temperature</span></li><li><span lang="zh-CN">空速</span><span lang="en">Gas hourly space velocity</span></li></ul></div>
+            </div>
+            <div class="proof">
+              <figure><img src="assets/img/gas-composition.webp" alt="不同塑料热解的气体组成 / gas composition by plastic type" loading="lazy" width="357" height="323"></figure>
+              <div class="body">
+                <p lang="zh-CN">已发表：不同塑料热解气中 H₂、CO、CO₂、CH₄、C₂–C₄ 的组成，以及合成气产率与 H₂/CO。</p>
+                <p lang="en">Published: H₂, CO, CO₂, CH₄ and C₂–C₄ composition across plastics, with syngas yield and H₂/CO.</p>
+                <p class="src" style="margin-top:10px">Energy &amp; Fuels 37 (2023) 6661–6673 · doi:10.1021/acs.energyfuels.3c00499</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="art" data-art="1">
+            <span class="art__k"><span lang="zh-CN">两级催化重整</span><span lang="en">Two-stage catalytic reforming</span></span>
+            <h3 class="d-m"><span lang="zh-CN">先保护，再深度转化。</span><span lang="en">Protect first. Then convert deeply.</span></h3>
+            <p class="body" lang="zh-CN">独特的两级催化反应结构：第一段牺牲性床层承接焦油与多环芳烃，第二段主重整床专注深度转化——提升抗中毒性与转化效率。</p>
+            <p class="body" lang="en">A two-stage structure: a sacrificial first bed takes the tar and polyaromatics so the main reforming bed can focus on deep conversion — better poisoning resistance, higher efficiency.</p>
+            <div class="reactor panel">
+              <svg viewBox="0 0 640 170" role="img" aria-label="two-stage reactor diagram">
+                <defs>
+                  <linearGradient id="gIn" x1="0" x2="1"><stop offset="0" stop-color="#c8633f"/><stop offset="1" stop-color="#d9a35a"/></linearGradient>
+                  <linearGradient id="gOut" x1="0" x2="1"><stop offset="0" stop-color="#9aa09d"/><stop offset="1" stop-color="#f2f3f1"/></linearGradient>
+                  <pattern id="pel" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.6" fill="rgba(217,163,90,.45)"/></pattern>
+                  <pattern id="pel2" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.6" fill="rgba(242,243,241,.45)"/></pattern>
+                </defs>
+                <path d="M0 85 H160" stroke="url(#gIn)" stroke-width="1.5" stroke-dasharray="5 7" class="flowline"/>
+                <rect x="160" y="30" width="140" height="110" rx="14" fill="url(#pel)" stroke="rgba(242,243,241,.25)"/>
+                <path d="M300 85 H340" stroke="#9aa09d" stroke-width="1.5" stroke-dasharray="5 7" class="flowline"/>
+                <rect x="340" y="30" width="140" height="110" rx="14" fill="url(#pel2)" stroke="rgba(242,243,241,.25)"/>
+                <path d="M480 85 H640" stroke="url(#gOut)" stroke-width="1.5" stroke-dasharray="5 7" class="flowline"/>
+                <text x="0" y="70" fill="#8a908d" font-family="Geist, sans-serif" font-size="12">Gas in</text>
+                <text x="230" y="163" fill="#b9bdbb" font-family="Geist, sans-serif" font-size="12" text-anchor="middle">Stage 1</text>
+                <text x="410" y="163" fill="#b9bdbb" font-family="Geist, sans-serif" font-size="12" text-anchor="middle">Stage 2</text>
+                <text x="640" y="70" fill="#f2f3f1" font-family="Geist, sans-serif" font-size="12" text-anchor="end">H₂ + CO</text>
+              </svg>
+              <div class="beds">
+                <div class="bed"><span class="bed__k"><span lang="zh-CN">一段 · 牺牲性焦油预裂解床</span><span lang="en">Stage 1 · sacrificial pre-reforming</span></span><h5><span lang="zh-CN">抗结焦积碳，容纳多环芳烃</span><span lang="en">Takes the coke and the PAHs</span></h5><p lang="zh-CN">保护下游主催化剂寿命。</p><p lang="en">Extends the life of the main catalyst.</p></div>
+                <div class="bed"><span class="bed__k"><span lang="zh-CN">二段 · 主重整床</span><span lang="en">Stage 2 · main reforming</span></span><h5><span lang="zh-CN">深度重整，生成高品质合成气</span><span lang="en">Deep reforming to quality syngas</span></h5><p lang="zh-CN">提升氢碳比与转化效率。</p><p lang="en">Higher H₂/CO and conversion.</p></div>
+              </div>
+            </div>
+            <ul class="plain">
+              <li lang="zh-CN">保护主重整催化剂</li><li lang="zh-CN">延长催化剂寿命</li><li lang="zh-CN">提高合成气纯度</li><li lang="zh-CN">适应复杂原料气</li>
+              <li lang="en">Protects the main catalyst</li><li lang="en">Extends catalyst life</li><li lang="en">Raises syngas purity</li><li lang="en">Tolerates complex feed gas</li>
+            </ul>
+          </article>
+
+          <article class="art" data-art="2">
+            <span class="art__k"><span lang="zh-CN">系统耦合</span><span lang="en">Catalyst · reactor · process control</span></span>
+            <h3 class="d-m"><span lang="zh-CN">催化剂、反应器、控制，作为一个系统运行。</span><span lang="en">Catalyst, reactor and control — run as one system.</span></h3>
+            <p class="body" lang="zh-CN">为升级模块提供实时工况分析，构建动态协同的连续运行模块，在原料波动时保持稳定。</p>
+            <p class="body" lang="en">Real-time condition analysis turns the module into a dynamically coordinated, continuously running system that stays stable when the feed moves.</p>
+            <div class="triad">
+              <div class="tri panel"><h5><span lang="zh-CN">催化剂</span><span lang="en">Catalyst</span></h5><p lang="zh-CN">抗中毒、高活性、长寿命</p><p lang="en">Poison-resistant, active, long-lived</p><span class="ref">Ni–Fe bimetallic · Fuel 276, 118116</span></div>
+              <div class="tri panel"><h5><span lang="zh-CN">反应器</span><span lang="en">Reactor</span></h5><p lang="zh-CN">多相反应、高效传热、灵活结构</p><p lang="en">Multiphase, efficient heat transfer, flexible</p><span class="ref">Energy Convers. Manag. 254, 115205</span></div>
+              <div class="tri panel"><h5><span lang="zh-CN">过程控制</span><span lang="en">Process control</span></h5><p lang="zh-CN">实时监测、动态调整、智能优化</p><p lang="en">Real-time monitoring and optimisation</p><span class="ref">Energy Convers. Manag. 302, 118082</span></div>
+            </div>
+            <ul class="plain">
+              <li lang="zh-CN">提升运行稳定性</li><li lang="zh-CN">适应原料波动</li><li lang="zh-CN">优化能耗表现</li><li lang="zh-CN">保障连续稳定生产</li>
+              <li lang="en">Operational stability</li><li lang="en">Rides feedstock swings</li><li lang="en">Lower energy use</li><li lang="en">Continuous production</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="next" href="#record" data-stage="reactor" data-dim=".3"><span class="next__k"><span lang="zh-CN">下一页</span><span lang="en">Next</span></span><span class="next__t"><span lang="zh-CN">研究成果</span><span lang="en">Track record</span><span class="arr">→</span></span></a>
+</div>
+
+<!-- ================================================================== RECORD -->
+<div class="view" data-view="record" data-title-zh="成果 · 赫序科技" data-title-en="Track record · InnoHelix" hidden>
+
+  <section class="sec paper" data-stage="none" data-paper>
+    <div class="wrap">
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">成果</span><span lang="en">Track record</span></div>
+      <div class="split2">
+        <h1 class="d-xl" data-reveal-lines>
+          <span lang="zh-CN"><span class="ln"><span>建立在已发表的</span></span><span class="ln" style="--i:1"><span>研究之上。</span></span></span>
+          <span lang="en"><span class="ln"><span>Built on</span></span><span class="ln" style="--i:1"><span>published research.</span></span></span>
+        </h1>
+        <p class="lead" data-reveal="up" lang="zh-CN">从批次式固定床到连续进料小试，我们的工艺路线有同行评议的数据和一套成型的专利基础。</p>
+        <p class="lead" data-reveal="up" lang="en">From batch fixed-bed to continuous-feed bench rigs, our route is backed by peer-reviewed data and an established patent base.</p>
+      </div>
+      <div class="bento">
+        <div class="b b--patent" data-reveal="up">
+          <img class="certs" src="assets/img/patents.webp" alt="" loading="lazy">
+          <span class="b__k"><span lang="zh-CN">专利基础</span><span lang="en">Patent base</span></span>
+          <div>
+            <div class="patent-num"><span class="num" data-count="81">81</span><span class="lbl"><span lang="zh-CN">项团队及相关机构累计专利</span><span lang="en">patents across the team and partner institutions</span></span></div>
+            <div class="patent-split">
+              <div><b data-count="75">75</b><span lang="zh-CN">已授权</span><span lang="en">granted</span></div>
+              <div><b data-count="6">6</b><span lang="zh-CN">已受理</span><span lang="en">filed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="b b--photo" data-reveal="up" style="--i:1">
+          <figure><img src="assets/img/lab-batch.webp" alt="实验室批次式固定床 / lab batch fixed-bed reactor" loading="lazy"></figure>
+          <figcaption><b lang="zh-CN">实验室批次式固定床</b><b lang="en">Batch fixed-bed reactor</b></figcaption>
+        </div>
+        <div class="b b--pubs" data-reveal="up">
+          <span class="b__k"><span lang="zh-CN">部分已发表研究</span><span lang="en">Selected publications</span></span>
+          <ul class="pubs">
+            <li><span class="t"><span lang="zh-CN">不同塑料热解气组成与合成气产率</span><span lang="en">Gas composition and syngas yield across plastics</span></span><span class="j">Energy &amp; Fuels 37 (2023)</span></li>
+            <li><span class="t"><span lang="zh-CN">温度、蒸汽输入与催化剂/塑料比的影响</span><span lang="en">Temperature, steam input and catalyst-to-plastic ratio</span></span><span class="j">Chem. Eng. J. 467 (2023)</span></li>
+            <li><span class="t"><span lang="zh-CN">废轮胎热解挥发物的催化转化</span><span lang="en">Catalytic conversion of waste-tyre pyrolysis volatiles</span></span><span class="j">Fuel Process. Technol. 265 (2024)</span></li>
+            <li><span class="t"><span lang="zh-CN">Ni–Fe 双金属催化剂</span><span lang="en">Ni–Fe bimetallic catalysts</span></span><span class="j">Fuel 276</span></li>
+            <li><span class="t"><span lang="zh-CN">反应器及多过程耦合</span><span lang="en">Reactor and multi-process coupling</span></span><span class="j">Energy Convers. Manag. 254</span></li>
+            <li><span class="t"><span lang="zh-CN">过程模拟、能效与系统优化</span><span lang="en">Process simulation, efficiency and optimisation</span></span><span class="j">Energy Convers. Manag. 302</span></li>
+          </ul>
+        </div>
+        <div class="b b--photo b--tall" data-reveal="up" style="--i:1">
+          <figure><img src="assets/img/lab-pilot.webp" alt="连续进料小试设备 / continuous-feed bench rig" loading="lazy"></figure>
+          <figcaption><b lang="zh-CN">连续进料小试设备</b><b lang="en">Continuous-feed bench rig</b></figcaption>
+        </div>
+        <div class="b b--awards" data-reveal="up">
+          <span class="b__k"><span lang="zh-CN">团队荣誉</span><span lang="en">Recognition</span></span>
+          <ul class="awards">
+            <li><b lang="zh-CN">斯伦贝谢总裁奖</b><b lang="en">Schlumberger President's Award</b><span lang="zh-CN">梁汉璞</span><span lang="en">Hanpu Liang</span></li>
+            <li><b lang="zh-CN">中国创新挑战赛奖</b><b lang="en">China Innovation Challenge award</b><span lang="zh-CN">梁汉璞</span><span lang="en">Hanpu Liang</span></li>
+            <li><b>CSC–Cambridge Scholar</b><span lang="zh-CN">王宇佳</span><span lang="en">Yujia Wang</span></li>
+            <li><b lang="zh-CN">清华大学水木学者</b><b lang="en">Tsinghua Shuimu Scholar</b><span lang="zh-CN">李玉昆</span><span lang="en">Yukun Li</span></li>
+            <li><b lang="zh-CN">剑桥信托与三一学院奖学金</b><b lang="en">Cambridge Trust &amp; Trinity College scholarships</b><span lang="zh-CN">马莉</span><span lang="en">Li Ma</span></li>
+          </ul>
+        </div>
+        <div class="b b--kpi" data-reveal="up" style="--i:1">
+          <span class="b__k"><span lang="zh-CN">核心成员论文与专利</span><span lang="en">Core-team output</span></span>
+          <div class="kpis">
+            <div><b>60+</b><span lang="zh-CN">梁汉璞 · 学术论文</span><span lang="en">papers · Hanpu Liang</span></div>
+            <div><b>57</b><span lang="zh-CN">任强强 · 学术论文</span><span lang="en">papers · Qiangqiang Ren</span></div>
+            <div><b>60+</b><span lang="zh-CN">任强强 · 专利</span><span lang="en">patents · Qiangqiang Ren</span></div>
+            <div><b>10+</b><span lang="zh-CN">梁汉璞 · 国内外专利</span><span lang="en">patents · Hanpu Liang</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="wrap"><div class="label rule"><span lang="zh-CN">产业交流 · OXCCU、中国商飞、科大硅谷、中安创谷等</span><span lang="en">In the field · OXCCU, COMAC, USTC Silicon Valley, Zhong'an Innovation Valley and more</span></div></div>
+      <div class="marquee" aria-label="field research photos">
+        <figure><img src="assets/img/field-6.webp" alt="OXCCU" loading="lazy"></figure>
+        <figure><img src="assets/img/field-3.webp" alt="中国商飞 COMAC" loading="lazy"></figure>
+        <figure><img src="assets/img/field-2.webp" alt="科大硅谷" loading="lazy"></figure>
+        <figure><img src="assets/img/field-4.webp" alt="中国商飞 COMAC" loading="lazy"></figure>
+        <figure><img src="assets/img/field-1.webp" alt="中安创谷" loading="lazy"></figure>
+        <figure><img src="assets/img/field-5.webp" alt="ZTE" loading="lazy"></figure>
+        <figure aria-hidden="true"><img src="assets/img/field-6.webp" alt="" loading="lazy"></figure>
+        <figure aria-hidden="true"><img src="assets/img/field-3.webp" alt="" loading="lazy"></figure>
+        <figure aria-hidden="true"><img src="assets/img/field-2.webp" alt="" loading="lazy"></figure>
+        <figure aria-hidden="true"><img src="assets/img/field-4.webp" alt="" loading="lazy"></figure>
+        <figure aria-hidden="true"><img src="assets/img/field-1.webp" alt="" loading="lazy"></figure>
+        <figure aria-hidden="true"><img src="assets/img/field-5.webp" alt="" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-stage="bridge" data-dim=".75">
+    <div class="wrap">
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">中欧协同</span><span lang="en">China — Europe</span></div>
+      <h2 class="d-xl" style="margin-top:30px" data-reveal-lines>
+        <span lang="zh-CN"><span class="ln"><span>在中国验证，</span></span><span class="ln" style="--i:1"><span class="dim">在欧洲落地。</span></span></span>
+        <span lang="en"><span class="ln"><span>Validated in China.</span></span><span class="ln" style="--i:1"><span class="dim">Deployed in Europe.</span></span></span>
+      </h2>
+      <div class="bridge" data-reveal="up">
+        <div class="bcol">
+          <h4><span lang="zh-CN">中国</span><span lang="en">China</span><small lang="zh-CN">真实气源与工程化</small><small lang="en">Real gas &amp; engineering</small></h4>
+          <p><span lang="zh-CN">废塑料、废轮胎热解气</span><span lang="en">Plastic &amp; tyre pyrolysis gas</span></p>
+          <p><span lang="zh-CN">热解设备与工程供应链</span><span lang="en">Pyrolysis kit &amp; engineering supply chain</span></p>
+          <p><span lang="zh-CN">真实工业场景与快速验证</span><span lang="en">Real industrial sites, fast validation</span></p>
+          <p><span lang="zh-CN">模块制造与成本优势</span><span lang="en">Module manufacturing &amp; cost</span></p>
+        </div>
+        <div class="bcol bcol--mid">
+          <h4>InnoHelix<small lang="zh-CN">质量接口</small><small lang="en">The quality interface</small></h4>
+          <p><span lang="zh-CN">气体表征与准入边界</span><span lang="en">Gas characterisation &amp; acceptance limits</span></p>
+          <p><span lang="zh-CN">分级保护与催化升级模块</span><span lang="en">Staged protection &amp; upgrading module</span></p>
+          <p><span lang="zh-CN">运行窗口、数据与控制模型</span><span lang="en">Operating windows, data &amp; control models</span></p>
+          <p><span lang="zh-CN">工艺包与质量接口</span><span lang="en">Process package &amp; quality interface</span></p>
+        </div>
+        <div class="bcol">
+          <h4><span lang="zh-CN">欧洲</span><span lang="en">Europe</span><small lang="zh-CN">标准与市场</small><small lang="en">Standards &amp; market</small></h4>
+          <p><span lang="zh-CN">SAF 与绿色甲醇需求</span><span lang="en">SAF &amp; green-methanol demand</span></p>
+          <p><span lang="zh-CN">碳核算与可持续标准</span><span lang="en">Carbon accounting &amp; sustainability standards</span></p>
+          <p><span lang="zh-CN">下游要求与市场准入</span><span lang="en">Downstream specs &amp; market access</span></p>
+          <p><span lang="zh-CN">技术许可与商业部署</span><span lang="en">Licensing &amp; commercial deployment</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="next" href="#team" data-stage="bridge" data-dim=".3"><span class="next__k"><span lang="zh-CN">下一页</span><span lang="en">Next</span></span><span class="next__t"><span lang="zh-CN">我们的团队</span><span lang="en">Team</span><span class="arr">→</span></span></a>
+</div>
+
+<!-- ================================================================== TEAM -->
+<div class="view" data-view="team" data-title-zh="团队 · 赫序科技" data-title-en="Team · InnoHelix" hidden>
+  <section class="sec paper" data-stage="none" data-paper>
+    <div class="wrap">
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">团队</span><span lang="en">Team</span></div>
+      <div class="split2">
+        <h1 class="d-l" data-reveal-lines>
+          <span lang="zh-CN"><span class="ln"><span>物理、化工、催化，</span></span><span class="ln" style="--i:1"><span class="dim">和把它做成生意的人。</span></span></span>
+          <span lang="en"><span class="ln"><span>Physics, chemistry, catalysis —</span></span><span class="ln" style="--i:1"><span class="dim">and the people who make it a business.</span></span></span>
+        </h1>
+        <p class="lead" data-reveal="up" lang="zh-CN">来自牛津、剑桥、中科院、华中科大、清华等机构，覆盖从固废到合成气、从合成气到燃料的完整链条。</p>
+        <p class="lead" data-reveal="up" lang="en">From Oxford, Cambridge, the Chinese Academy of Sciences, HUST, Tsinghua and more — covering the chain from waste to syngas to fuel.</p>
+      </div>
+      <div class="inst" aria-label="institutions">
+        <div class="inst__track">
+          <span>University of Oxford</span><span>University of Cambridge</span><span>Chinese Academy of Sciences</span><span>Tsinghua University</span><span>Imperial College London</span><span>Huazhong University of Science and Technology</span><span>University of Leeds</span><span>East China University of Science and Technology</span><span>Nanjing Normal University</span><span>Tongji University</span>
+          <span aria-hidden="true">University of Oxford</span><span aria-hidden="true">University of Cambridge</span><span aria-hidden="true">Chinese Academy of Sciences</span><span aria-hidden="true">Tsinghua University</span><span aria-hidden="true">Imperial College London</span><span aria-hidden="true">Huazhong University of Science and Technology</span><span aria-hidden="true">University of Leeds</span><span aria-hidden="true">East China University of Science and Technology</span><span aria-hidden="true">Nanjing Normal University</span><span aria-hidden="true">Tongji University</span>
+        </div>
+      </div>
+
+      <div class="core">
+        <article class="person" data-reveal="up" style="--i:0">
+          <div class="ph"><img src="assets/team/zhang-ruohan.webp" alt="张若晗 Ruohan Zhang" loading="lazy"></div>
+          <div class="bd">
+            <div class="role"><b>CEO</b><span>Oxford · Cambridge</span></div>
+            <h4>张若晗<small>Dr Ruohan Zhang</small></h4>
+            <ul>
+              <li lang="zh-CN">牛津大学物理学本硕，剑桥大学化学工程博士</li>
+              <li lang="zh-CN">同行评议论文 4 篇，授权发明专利 1 项</li>
+              <li lang="zh-CN">负责公司战略、SAF 产品定义及产业化路径</li>
+              <li lang="zh-CN">兼具投行与产业项目经验，推进产业链合作</li>
+              <li lang="en">Physics (undergraduate &amp; master's), Oxford; PhD Chemical Engineering, Cambridge</li>
+              <li lang="en">4 peer-reviewed papers, 1 granted patent</li>
+              <li lang="en">Leads strategy, SAF product definition and industrialisation</li>
+              <li lang="en">Investment-banking and industrial-project experience; drives partnerships</li>
+            </ul>
+          </div>
+        </article>
+        <article class="person" data-reveal="up" style="--i:1">
+          <div class="ph"><img src="assets/team/ren-qiangqiang.webp" alt="任强强 Qiangqiang Ren" loading="lazy"></div>
+          <div class="bd">
+            <div class="role"><b>CTO</b><span lang="zh-CN">固废 → 合成气</span><span lang="en">Waste → syngas</span></div>
+            <h4>任强强<small lang="zh-CN">讲师 · Qiangqiang Ren</small><small lang="en">Lecturer Qiangqiang Ren</small></h4>
+            <ul>
+              <li lang="zh-CN">华中科技大学工学博士及博士后，南京师范大学能源科学与工程学院讲师 / 特岗副研究员</li>
+              <li lang="zh-CN">深耕有机固废热化学转化与热力系统智能优化控制</li>
+              <li lang="zh-CN">学术论文 57 篇，专利 60+ 项，科研项目 10+ 项</li>
+              <li lang="zh-CN">负责复杂固废适配、热解气化及工程放大</li>
+              <li lang="en">PhD &amp; postdoc, Huazhong University of Science and Technology; Lecturer, School of Energy Science and Engineering, Nanjing Normal University</li>
+              <li lang="en">Thermochemical conversion of organic waste; intelligent control of thermal systems</li>
+              <li lang="en">57 papers, 60+ patents, 10+ research projects</li>
+              <li lang="en">Leads feedstock adaptation, pyrolysis/gasification and scale-up</li>
+            </ul>
+          </div>
+        </article>
+        <article class="person" data-reveal="up" style="--i:2">
+          <div class="ph"><img src="assets/team/liang-hanpu.webp" alt="梁汉璞 Hanpu Liang" loading="lazy"></div>
+          <div class="bd">
+            <div class="role"><b>CTO</b><span lang="zh-CN">合成气 → SAF</span><span lang="en">Syngas → SAF</span></div>
+            <h4>梁汉璞<small lang="zh-CN">教授 · Hanpu Liang</small><small lang="en">Professor Hanpu Liang</small></h4>
+            <ul>
+              <li lang="zh-CN">中科院青岛能源所研究员、博士生导师；曾任斯伦贝谢剑桥研究中心高级科学家</li>
+              <li lang="zh-CN">深耕纳米催化、能源材料与电化学催化，具备催化剂中试与工程放大经验</li>
+              <li lang="zh-CN">学术论文 60+ 篇，国内外专利 10+ 项；获斯伦贝谢总裁奖、中国创新挑战赛奖</li>
+              <li lang="zh-CN">负责合成气净化调质、催化合成与产品衔接</li>
+              <li lang="en">Professor, Qingdao Institute of Bioenergy and Bioprocess Technology, CAS; former Senior Scientist, Schlumberger Cambridge Research</li>
+              <li lang="en">Nanocatalysis, energy materials and electrocatalysis; pilot-scale catalyst validation</li>
+              <li lang="en">60+ papers, 10+ patents; Schlumberger President's Award, China Innovation Challenge award</li>
+              <li lang="en">Leads syngas conditioning, catalytic synthesis and product integration</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="ext">
+        <div class="ext__lab"><span class="label"><span lang="zh-CN">研发与商业化</span><span lang="en">R&amp;D and commercial</span></span><h3><span lang="zh-CN">从反应器到客户现场。</span><span lang="en">From the reactor to the customer's site.</span></h3></div>
+        <div class="ext__grid">
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/yu-jisheng.webp" alt="俞际声" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">俞际声</span><span lang="en">Jisheng Yu</span></h5><span class="r"><span lang="zh-CN">废塑料转化与工艺开发</span><span lang="en">Plastic conversion &amp; process</span></span><p lang="zh-CN">华东理工化工本硕博，牛津访问学者；论文 15 篇，发明专利 4 项</p><p lang="en">BSc–PhD ChemEng, ECUST; Oxford visiting scholar; 15 papers, 4 patents</p></div></div>
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/wang-yujia.webp" alt="王宇佳" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">王宇佳</span><span lang="en">Yujia Wang</span></h5><span class="r"><span lang="zh-CN">燃烧工程与反应器</span><span lang="en">Combustion &amp; reactors</span></span><p lang="zh-CN">剑桥化工博士在读（CSC–Cambridge Scholar），帝国理工一等学位</p><p lang="en">PhD candidate, Cambridge (CSC–Cambridge Scholar); First, Imperial</p></div></div>
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/wang-shushan.webp" alt="王书善" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">王书善</span><span lang="en">Shushan Wang</span></h5><span class="r"><span lang="zh-CN">系统与工程负责人</span><span lang="en">Systems &amp; engineering lead</span></span><p lang="zh-CN">清华光电硕士，剑桥化工博士在读</p><p lang="en">MSc Tsinghua; PhD candidate, Cambridge ChemEng</p></div></div>
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/li-yukun.webp" alt="李玉昆" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">李玉昆</span><span lang="en">Yukun Li</span></h5><span class="r"><span lang="zh-CN">催化重整与合成气</span><span lang="en">Catalytic reforming &amp; syngas</span></span><p lang="zh-CN">清华水木学者，利兹大学博士；SCI 一作 10 篇</p><p lang="en">Shuimu Scholar, Tsinghua; PhD, Leeds; 10 first-author papers</p></div></div>
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/yin-yijing.webp" alt="尹迤婧" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">尹迤婧</span><span lang="en">Yijing Yin</span></h5><span class="r"><span lang="zh-CN">商业化负责人</span><span lang="en">Head of commercialisation</span></span><p lang="zh-CN">剑桥 MBA；八年战略咨询与创新经验（麦肯锡、BCG、福特）</p><p lang="en">Cambridge MBA; 8 years in strategy &amp; innovation (McKinsey, BCG, Ford)</p></div></div>
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/liu-jiachen.webp" alt="刘家琛" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">刘家琛</span><span lang="en">Jiachen Liu</span></h5><span class="r"><span lang="zh-CN">运营与产业合作负责人</span><span lang="en">Operations &amp; partnerships</span></span><p lang="zh-CN">剑桥博士在读；负责项目运营与产业合作</p><p lang="en">PhD candidate, Cambridge; operations and partnerships</p></div></div>
+          <div class="mini" data-reveal="up"><div class="ph"><img src="assets/team/ma-li.webp" alt="马莉" loading="lazy"></div><div class="bd"><h5><span lang="zh-CN">马莉</span><span lang="en">Li Ma</span></h5><span class="r"><span lang="zh-CN">市场与国际合作负责人</span><span lang="en">Marketing &amp; international</span></span><p lang="zh-CN">剑桥分子生物学博士研究背景；剑桥信托与三一学院奖学金</p><p lang="en">Doctoral research, Cambridge; Cambridge Trust &amp; Trinity scholar</p></div></div>
+        </div>
+      </div>
+
+      <div class="adv">
+        <div class="label rule"><span lang="zh-CN">学术与产业顾问</span><span lang="en">Advisory network</span></div>
+        <ul class="adv__list">
+          <li data-reveal="up"><span class="nm">Prof. Ewa J. Marek</span><span class="rl"><span lang="zh-CN">学术顾问</span><span lang="en">Academic</span></span><span class="fd"><span lang="zh-CN">热化学转化、流化床与可持续燃料</span><span lang="en">Thermochemical conversion, fluidised beds, sustainable fuels</span></span></li>
+          <li data-reveal="up"><span class="nm">Prof. J. Axel Zeitler</span><span class="rl"><span lang="zh-CN">学术顾问</span><span lang="en">Academic</span></span><span class="fd"><span lang="zh-CN">先进表征与过程分析</span><span lang="en">Advanced characterisation &amp; process analytics</span></span></li>
+          <li data-reveal="up"><span class="nm"><span lang="zh-CN">成康 教授</span><span lang="en">Prof. Kang Cheng</span></span><span class="rl"><span lang="zh-CN">学术顾问</span><span lang="en">Academic</span></span><span class="fd"><span lang="zh-CN">催化转化与合成燃料</span><span lang="en">Catalytic conversion &amp; synthetic fuels</span></span></li>
+          <li data-reveal="up"><span class="nm">Prof. Will Handley</span><span class="rl"><span lang="zh-CN">学术顾问</span><span lang="en">Academic</span></span><span class="fd"><span lang="zh-CN">贝叶斯建模与过程优化</span><span lang="en">Bayesian modelling &amp; process optimisation</span></span></li>
+          <li data-reveal="up"><span class="nm">Prof. David Lane<small>FAcSS</small></span><span class="rl"><span lang="zh-CN">战略顾问</span><span lang="en">Strategic</span></span><span class="fd"><span lang="zh-CN">产业战略与中英合作网络</span><span lang="en">Industrial strategy &amp; UK–China network</span></span></li>
+          <li data-reveal="up"><span class="nm">Prof. Robert Dorschel</span><span class="rl"><span lang="zh-CN">战略顾问</span><span lang="en">Strategic</span></span><span class="fd"><span lang="zh-CN">技术商业化与组织发展</span><span lang="en">Commercialisation &amp; organisational development</span></span></li>
+          <li data-reveal="up"><span class="nm">Prof. Laura M. Machesky<small>FRSE, FMedSci</small></span><span class="rl"><span lang="zh-CN">战略顾问</span><span lang="en">Strategic</span></span><span class="fd"><span lang="zh-CN">跨学科科研与国际合作</span><span lang="en">Interdisciplinary research &amp; international collaboration</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <a class="next next--paper" href="#contact" data-stage="none" data-paper><span class="next__k"><span lang="zh-CN">下一页</span><span lang="en">Next</span></span><span class="next__t"><span lang="zh-CN">与我们合作</span><span lang="en">Work with us</span><span class="arr">→</span></span></a>
+</div>
+
+<!-- ================================================================== CONTACT -->
+<div class="view" data-view="contact" data-title-zh="联系我们 · 赫序科技" data-title-en="Contact · InnoHelix" hidden>
+  <section class="close" data-stage="loop" data-dim="1">
+    <div class="wrap close__in">
+      <div class="label" data-reveal="fade"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></div>
+      <h1 class="d-xl" data-reveal-lines>
+        <span lang="zh-CN"><span class="ln"><span>让废弃物成为燃料，</span></span><span class="ln" style="--i:1"><span class="dim">让碳留在循环中。</span></span></span>
+        <span lang="en"><span class="ln"><span>Turning waste into fuel.</span></span><span class="ln" style="--i:1"><span class="dim">Keeping carbon in the loop.</span></span></span>
+      </h1>
+      <div class="cta-row" data-reveal="up">
+        <a class="btn btn--solid" href="#contact" data-mail><span lang="zh-CN">预约技术交流</span><span lang="en">Book a technical call</span><span class="arr">→</span></a>
+      </div>
+      <div class="ways">
+        <div class="way" data-reveal="up" style="--i:0"><h5><span lang="zh-CN">气体评估</span><span lang="en">Gas assessment</span></h5><p lang="zh-CN">把你的热解气交给我们，先看清它能变成什么。</p><p lang="en">Send us your pyrolysis gas. We'll show you what it can become.</p></div>
+        <div class="way" data-reveal="up" style="--i:1"><h5><span lang="zh-CN">联合开发</span><span lang="en">Joint development</span></h5><p lang="zh-CN">针对你的气源与下游路线，定制升级方案。</p><p lang="en">An upgrading solution tuned to your gas and your downstream route.</p></div>
+        <div class="way" data-reveal="up" style="--i:2"><h5><span lang="zh-CN">产业合作</span><span lang="en">Industrial partnership</span></h5><p lang="zh-CN">SAF、绿色甲醇与固废资源化项目合作。</p><p lang="en">SAF, green methanol and waste-to-value projects.</p></div>
+      </div>
+      <p class="contact-line" data-reveal="fade"><span lang="zh-CN">邮箱　</span><span lang="en">Email　</span><span class="todo" data-mail-text>[待填写联系邮箱]</span></p>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <a href="#home" class="foot__logo"><img src="assets/img/wordmark-light.png" alt="INNOHELIX"></a>
+    <nav aria-label="Footer">
+      <a href="#product"><span lang="zh-CN">产品</span><span lang="en">Product</span></a>
+      <a href="#technology"><span lang="zh-CN">技术</span><span lang="en">Technology</span></a>
+      <a href="#record"><span lang="zh-CN">成果</span><span lang="en">Track record</span></a>
+      <a href="#team"><span lang="zh-CN">团队</span><span lang="en">Team</span></a>
+      <a href="#contact"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></a>
+    </nav>
+    <p class="src">© 2026 赫序科技 InnoHelix · <span lang="zh-CN">产品图为概念渲染。</span><span lang="en">Product imagery is a concept render.</span></p>
+  </div>
+</footer>
+
+<script src="vendor/three.classic.js"></script>
+<script src="js/site.js"></script>
+<script src="js/world.js"></script>
+</body>
+</html>
