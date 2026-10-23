@@ -3,22 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>赫序科技 InnoHelix</title>
-<meta name="description" content="赫序科技 InnoHelix —— 复杂热解气催化升级模块，把废塑料、废轮胎产生的波动热解气升级为稳定合成气，连接可持续航空燃料（SAF）的下游合成。">
-<meta name="theme-color" content="#0a0b0b">
-<meta property="og:title" content="InnoHelix — The next hydrocarbon, by design.">
-<meta property="og:description" content="Catalytic upgrading for complex pyrolysis gas — from industrial waste to synthesis-ready syngas for sustainable aviation fuel.">
+<title>新碳纪元 InnoHelix</title>
+<meta name="description" content="新碳纪元 InnoHelix 开发模块化催化升级技术，连接废弃物热解气与下游航空燃料合成，让废弃碳成为未来燃料。">
+<meta name="theme-color" content="#0b1716">
+<meta property="og:title" content="InnoHelix: turning waste carbon into future fuels">
+<meta property="og:description" content="InnoHelix develops modular catalytic upgrading technology that links waste pyrolysis gas with downstream aviation-fuel synthesis.">
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- fonts load without blocking: where Google is unreachable (mainland China) the page renders at once in PingFang / YaHei -->
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200..700&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="css/site.css">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<!-- Brand Guideline fonts: DM Sans / MiSans for headings, Inter / Source Han Sans (Noto Sans SC) for body.
+     All load without blocking: where Google or jsDelivr is unreachable the page renders at once in PingFang / YaHei. -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Semibold.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Bold.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="css/site.css?v=9">
 </head>
 <body>
 
 <div class="atmo" aria-hidden="true"><i class="b1"></i><i class="b2"></i></div>
-<div class="ghost" aria-hidden="true">INNOHELIX</div>
 <canvas id="world" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -39,6 +42,7 @@
       <img class="logo__mark" src="assets/img/mark-light.png" alt="">
       <img class="logo__word on-dark" src="assets/img/wordmark-light.png" alt="INNOHELIX">
       <img class="logo__word on-light" src="assets/img/wordmark-dark.png" alt="">
+      <span class="logo__cn" lang="zh-CN">新碳纪元</span>
     </a>
     <nav class="menu" aria-label="Primary">
       <a href="#product" data-route="product"><span lang="zh-CN">产品</span><span lang="en">Product</span></a>
@@ -67,48 +71,52 @@
 <main id="app">
 
 <!-- ================================================================== HOME -->
-<div class="view" data-view="home" data-title-zh="赫序科技 InnoHelix" data-title-en="InnoHelix — The next hydrocarbon, by design">
+<div class="view" data-view="home" data-title-zh="新碳纪元 InnoHelix" data-title-en="InnoHelix: turning waste carbon into future fuels">
 
-  <section class="hero" data-stage="helix">
+  <section class="hero" data-stage="convert">
     <div class="wrap hero__main">
-      <div class="hero__top enter" style="--d:150ms">
-        <span><span lang="zh-CN">赫序科技</span><span lang="en">InnoHelix</span> — Waste · Carbon · Fuel</span>
-        <span class="hero__tag">The next hydrocarbon, by design.</span>
-      </div>
+      <div class="label enter" style="--d:150ms"><span lang="zh-CN">新碳纪元 InnoHelix</span><span lang="en">InnoHelix</span></div>
       <h1 class="d-xxl">
-        <span lang="zh-CN"><span class="ln"><span>把工业固废，</span></span><span class="ln" style="--i:1"><span>变成航空燃料。</span></span></span>
-        <span lang="en"><span class="ln"><span>Industrial waste,</span></span><span class="ln" style="--i:1"><span>made into jet fuel.</span></span></span>
+        <span lang="zh-CN"><span class="ln"><span>让废弃碳，</span></span><span class="ln" style="--i:1"><span>成为未来燃料。</span></span></span>
+        <span lang="en"><span class="ln"><span>Turning waste carbon</span></span><span class="ln" style="--i:1"><span>into future fuels.</span></span></span>
       </h1>
       <div class="hero__foot">
-        <p class="lead enter" style="--d:600ms" lang="zh-CN">赫序科技研发<b>复杂热解气催化升级模块</b>：把废塑料、废轮胎产生的波动热解气，升级为适用于费托与甲醇合成的稳定原料气，接上可持续航空燃料（SAF）的生产链。</p>
-        <p class="lead enter" style="--d:600ms" lang="en">InnoHelix builds a <b>catalytic upgrading module for complex pyrolysis gas</b> — turning the volatile gas from waste plastics and tyres into stable feed gas for Fischer–Tropsch and methanol synthesis, the routes to sustainable aviation fuel (SAF).</p>
-        <div class="cta-row enter" style="--d:750ms">
-          <a class="btn btn--solid" href="#product"><span lang="zh-CN">了解产品</span><span lang="en">See the product</span><span class="arr">→</span></a>
-          <a class="btn btn--line" href="#technology"><span lang="zh-CN">核心技术</span><span lang="en">Core technology</span></a>
+        <div class="hero__copy enter" style="--d:600ms">
+          <p class="lead" lang="zh-CN">我们开发模块化催化升级技术，连接废弃物热解气与下游航空燃料合成。</p>
+          <p class="lead" lang="en">We develop modular catalytic upgrading technology that links waste pyrolysis gas with downstream aviation-fuel synthesis.</p>
+          <p class="hero__proof"><b>81</b><span lang="zh-CN">项专利基础，为团队及相关机构累计成果</span><span lang="en">patents across the team and partner institutions</span></p>
         </div>
-      </div>
-    </div>
-    <div class="wrap">
-      <div class="hero__meta enter" style="--d:900ms">
-        <div class="meta"><b>70%</b><span lang="zh-CN">欧盟 2050 年 SAF 最低掺混比例</span><span lang="en">EU minimum SAF share by 2050</span></div>
-        <div class="meta"><b>0.8%</b><span lang="zh-CN">2026 年 SAF 占全球航油用量（IATA 预测）</span><span lang="en">SAF share of global jet fuel, 2026 (IATA forecast)</span></div>
-        <div class="meta"><b>81</b><span lang="zh-CN">团队及相关机构累计专利基础</span><span lang="en">Patents across the team and partner institutions</span></div>
+        <div class="cta-row enter" style="--d:750ms">
+          <a class="btn btn--solid" href="#technology"><span lang="zh-CN">了解我们的技术</span><span lang="en">Explore our technology</span><span class="arr">→</span></a>
+          <a class="btn btn--line" href="#contact"><span lang="zh-CN">讨论技术合作</span><span lang="en">Discuss a partnership</span></a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec manifesto" data-stage="chaos" data-dim=".8">
-    <div class="wrap">
-      <div lang="zh-CN">
-        <p data-split>长途航班无法电气化，航空减碳只能靠液体燃料。</p>
-        <p data-split>而每天产生的废塑料、废轮胎里，藏着大量从未被回收的碳。</p>
-        <p data-split>炼化不必依赖石油——废弃物，就可以是未来。</p>
+  <section class="scale" data-stage="convert" data-dim="0" aria-labelledby="scale-title">
+    <div class="scale__media" aria-hidden="true"><img src="assets/img/waste.webp" alt="" width="1070" height="695" loading="lazy"></div>
+    <div class="wrap scale__in">
+      <div class="scale__top">
+        <div class="scale__head" data-reveal="up">
+          <span class="label"><span lang="zh-CN">背景</span><span lang="en">The problem</span></span>
+          <h2 class="d-l" id="scale-title">
+            <span lang="zh-CN">每天产生的废塑料、废轮胎里，<br>藏着大量尚未得到充分利用的碳。</span>
+            <span lang="en">Every day, waste plastics and tyres hold carbon that is still largely unused.</span>
+          </h2>
+          <a class="btn btn--ghost" href="#technology"><span lang="zh-CN">看看如何转化</span><span lang="en">See how we convert it</span></a>
+        </div>
+        <p class="scale__body" data-reveal="up" style="--i:1" lang="zh-CN">低值废塑料、废轮胎与混合有机固废持续产生，填埋、焚烧和物理回收都难以覆盖。把其中的碳转化为航空燃料的原料，是我们要解决的问题。</p>
+        <p class="scale__body" data-reveal="up" style="--i:1" lang="en">Low-value plastics, tyres and mixed organic waste keep coming, and landfill, incineration and mechanical recycling can’t absorb them. Turning that carbon into feedstock for aviation fuel is the problem we work on.</p>
       </div>
-      <div lang="en">
-        <p data-split>Long-haul flight can't be electrified. Aviation can only decarbonise with liquid fuel.</p>
-        <p data-split>Meanwhile, waste plastics and tyres pile up — full of carbon nobody recovers.</p>
-        <p data-split>Refining doesn't have to depend on oil. Waste can be the future.</p>
-      </div>
+      <ol class="scale__chain" data-reveal="fade" aria-label="从固废到航空燃料 / From waste to aviation fuel">
+        <li><span lang="zh-CN">废弃物原料</span><span lang="en">Waste feedstock</span></li>
+        <li><span lang="zh-CN">热解气</span><span lang="en">Pyrolysis gas</span></li>
+        <li class="is-us"><span lang="zh-CN">催化升级</span><span lang="en">Catalytic upgrading</span><small>InnoHelix</small></li>
+        <li><span lang="zh-CN">合成气</span><span lang="en">Syngas</span></li>
+        <li><span lang="zh-CN">航空燃料合成</span><span lang="en">Aviation-fuel synthesis</span></li>
+      </ol>
+      <p class="scale__cap"><span lang="zh-CN">图：固废打包场。InnoHelix 只承担其中的催化升级环节。</span><span lang="en">Image: a waste baling yard. InnoHelix works on the catalytic upgrading step only.</span></p>
     </div>
   </section>
 
@@ -116,10 +124,14 @@
     <div class="wrap">
       <div class="label rule" data-reveal="fade"><span lang="zh-CN">为什么是现在</span><span lang="en">Why now</span></div>
       <div class="now">
-        <h2 class="d-l" data-reveal-lines>
-          <span lang="zh-CN"><span class="ln"><span>需求，</span></span><span class="ln" style="--i:1"><span class="dim">已经写进法规。</span></span></span>
-          <span lang="en"><span class="ln"><span>Demand is already</span></span><span class="ln" style="--i:1"><span class="dim">written into law.</span></span></span>
-        </h2>
+        <div class="now__copy">
+          <h2 class="d-l" data-reveal-lines>
+            <span lang="zh-CN"><span class="ln"><span>SAF 强制使用要求，</span></span><span class="ln" style="--i:1"><span class="dim">正在形成市场需求。</span></span></span>
+            <span lang="en"><span class="ln"><span>SAF mandates are</span></span><span class="ln" style="--i:1"><span class="dim">creating market demand.</span></span></span>
+          </h2>
+          <p class="lead" data-reveal="up" lang="zh-CN">SAF 强制使用要求正在将航空减碳目标转化为市场需求。扩大生产，需要更多原料来源与配套转化技术。InnoHelix 聚焦其中的催化升级环节，为废弃碳进入航空燃料生产链开发关键技术。</p>
+          <p class="lead" data-reveal="up" lang="en">SAF mandates are turning aviation’s decarbonisation targets into market demand. Scaling production needs more feedstock and the conversion technology to go with it. InnoHelix focuses on the catalytic upgrading step, building the technology that lets waste carbon enter the aviation-fuel supply chain.</p>
+        </div>
         <div class="big" data-reveal="up">
           <div class="row"><span class="num dim">$<span data-count="3.1" data-dec="1">3.1</span>B</span><span class="arr">→</span><span class="num">$<span data-count="15.3" data-dec="1">15.3</span>B</span></div>
           <p class="body"><span lang="zh-CN">全球 SAF 燃料收入：2025 年估算 → 2033 年预测，预测年复合增长率 24.6%。</span><span lang="en">Global SAF revenue: 2025 estimate → 2033 forecast, at a forecast 24.6% CAGR.</span></p>
@@ -137,7 +149,7 @@
 
   <section class="sec explore" data-stage="loop" data-dim=".35">
     <div class="wrap">
-      <div class="label rule" data-reveal="fade"><span lang="zh-CN">认识赫序</span><span lang="en">Explore</span></div>
+      <div class="label rule" data-reveal="fade"><span lang="zh-CN">认识新碳纪元</span><span lang="en">Explore</span></div>
       <div class="tiles">
         <a class="tile tile--light" href="#product" data-reveal="up">
           <div class="tile__txt"><span class="tile__k"><span lang="zh-CN">产品</span><span lang="en">Product</span></span><h3><span lang="zh-CN">复杂热解气进，稳定合成气出。</span><span lang="en">Complex gas in. Synthesis-ready syngas out.</span></h3></div>
@@ -161,7 +173,7 @@
 </div>
 
 <!-- ================================================================== PRODUCT -->
-<div class="view" data-view="product" data-title-zh="产品 · 赫序科技" data-title-en="Product · InnoHelix" hidden>
+<div class="view" data-view="product" data-title-zh="产品 · 新碳纪元 InnoHelix" data-title-en="Product · InnoHelix" hidden>
 
   <section class="sec paper product" data-stage="none" data-paper>
     <div class="wrap">
@@ -225,18 +237,18 @@
 </div>
 
 <!-- ================================================================== TECHNOLOGY -->
-<div class="view" data-view="technology" data-title-zh="技术 · 赫序科技" data-title-en="Technology · InnoHelix" hidden>
+<div class="view" data-view="technology" data-title-zh="技术 · 新碳纪元 InnoHelix" data-title-en="Technology · InnoHelix" hidden>
 
   <section class="sec page-head" data-stage="chaos" data-dim=".55">
     <div class="wrap">
-      <div class="label rule" data-reveal="fade"><span lang="zh-CN">技术</span><span lang="en">Technology</span></div>
+      <div class="label" data-reveal="fade"><span lang="zh-CN">我们的技术</span><span lang="en">Our technology</span></div>
       <div class="split2">
         <h1 class="d-xl" data-reveal-lines>
-          <span lang="zh-CN"><span class="ln"><span>两个错配。</span></span><span class="ln" style="--i:1"><span class="dim">一个断点。</span></span></span>
-          <span lang="en"><span class="ln"><span>Two mismatches.</span></span><span class="ln" style="--i:1"><span class="dim">One missing link.</span></span></span>
+          <span lang="zh-CN"><span class="ln"><span>以催化升级模块，</span></span><span class="ln" style="--i:1"><span class="dim">连接固废热解与航油合成。</span></span></span>
+          <span lang="en"><span class="ln"><span>A catalytic upgrading module</span></span><span class="ln" style="--i:1"><span class="dim">between waste pyrolysis and jet-fuel synthesis.</span></span></span>
         </h1>
-        <p class="lead" data-reveal="up" lang="zh-CN">固废需要高值出路，航空需要低碳燃料。两端都在，中间缺一个能稳定工作的接口——这正是我们做的事。</p>
-        <p class="lead" data-reveal="up" lang="en">Waste needs a high-value outlet. Aviation needs low-carbon fuel. Both ends exist; the reliable interface between them is what we build.</p>
+        <p class="lead" data-reveal="up" lang="zh-CN">上游将固废热解为复杂气体，下游利用合成气生产航空燃料。InnoHelix 开发两者之间的催化升级接口，将复杂热解气转化为合成气，衔接上下游工艺。</p>
+        <p class="lead" data-reveal="up" lang="en">Upstream, waste is pyrolysed into a complex gas. Downstream, syngas is made into aviation fuel. InnoHelix develops the catalytic upgrading interface between the two, converting complex pyrolysis gas into syngas so both processes connect.</p>
       </div>
       <div class="sides">
         <article class="side side--waste" data-reveal="up">
@@ -365,7 +377,7 @@
 </div>
 
 <!-- ================================================================== RECORD -->
-<div class="view" data-view="record" data-title-zh="成果 · 赫序科技" data-title-en="Track record · InnoHelix" hidden>
+<div class="view" data-view="record" data-title-zh="成果 · 新碳纪元 InnoHelix" data-title-en="Track record · InnoHelix" hidden>
 
   <section class="sec paper" data-stage="none" data-paper>
     <div class="wrap">
@@ -486,7 +498,7 @@
 </div>
 
 <!-- ================================================================== TEAM -->
-<div class="view" data-view="team" data-title-zh="团队 · 赫序科技" data-title-en="Team · InnoHelix" hidden>
+<div class="view" data-view="team" data-title-zh="团队 · 新碳纪元 InnoHelix" data-title-en="Team · InnoHelix" hidden>
   <section class="sec paper" data-stage="none" data-paper>
     <div class="wrap">
       <div class="label rule" data-reveal="fade"><span lang="zh-CN">团队</span><span lang="en">Team</span></div>
@@ -498,13 +510,6 @@
         <p class="lead" data-reveal="up" lang="zh-CN">来自牛津、剑桥、中科院、华中科大、清华等机构，覆盖从固废到合成气、从合成气到燃料的完整链条。</p>
         <p class="lead" data-reveal="up" lang="en">From Oxford, Cambridge, the Chinese Academy of Sciences, HUST, Tsinghua and more — covering the chain from waste to syngas to fuel.</p>
       </div>
-      <div class="inst" aria-label="institutions">
-        <div class="inst__track">
-          <span>University of Oxford</span><span>University of Cambridge</span><span>Chinese Academy of Sciences</span><span>Tsinghua University</span><span>Imperial College London</span><span>Huazhong University of Science and Technology</span><span>University of Leeds</span><span>East China University of Science and Technology</span><span>Nanjing Normal University</span><span>Tongji University</span>
-          <span aria-hidden="true">University of Oxford</span><span aria-hidden="true">University of Cambridge</span><span aria-hidden="true">Chinese Academy of Sciences</span><span aria-hidden="true">Tsinghua University</span><span aria-hidden="true">Imperial College London</span><span aria-hidden="true">Huazhong University of Science and Technology</span><span aria-hidden="true">University of Leeds</span><span aria-hidden="true">East China University of Science and Technology</span><span aria-hidden="true">Nanjing Normal University</span><span aria-hidden="true">Tongji University</span>
-        </div>
-      </div>
-
       <div class="core">
         <article class="person" data-reveal="up" style="--i:0">
           <div class="ph"><img src="assets/team/zhang-ruohan.webp" alt="张若晗 Ruohan Zhang" loading="lazy"></div>
@@ -584,19 +589,45 @@
           <li data-reveal="up"><span class="nm">Prof. Laura M. Machesky<small>FRSE, FMedSci</small></span><span class="rl"><span lang="zh-CN">战略顾问</span><span lang="en">Strategic</span></span><span class="fd"><span lang="zh-CN">跨学科科研与国际合作</span><span lang="en">Interdisciplinary research &amp; international collaboration</span></span></li>
         </ul>
       </div>
+
+      <div class="schools">
+        <div class="schools__head">
+          <div>
+            <div class="label"><span lang="zh-CN">团队来源</span><span lang="en">Where our team comes from</span></div>
+            <p class="schools__note" lang="zh-CN">团队成员曾就读或任职的院校与机构。列出这些机构，不代表其与新碳纪元 InnoHelix 存在合作或背书关系。</p>
+            <p class="schools__note" lang="en">Universities and institutes where our team members have studied or worked. Listing them does not imply a partnership with, or endorsement of, InnoHelix.</p>
+          </div>
+          <div class="schools__nav">
+            <button type="button" data-dir="-1" aria-label="向左滚动 / Scroll left"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5"/></svg></button>
+            <button type="button" data-dir="1" aria-label="向右滚动 / Scroll right"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></button>
+          </div>
+        </div>
+        <ul class="schools__list" tabindex="0" aria-label="团队成员来自的院校与机构 / Institutions our team comes from">
+          <li><span class="schools__word">Oxford</span><b lang="zh-CN">牛津大学</b><b lang="en">University of Oxford</b></li>
+          <li><img src="assets/img/logos/cambridge.webp" alt="" width="188" height="220" loading="lazy"><b lang="zh-CN">剑桥大学</b><b lang="en">University of Cambridge</b></li>
+          <li><img src="assets/img/logos/cas.webp" alt="" width="227" height="220" loading="lazy"><b lang="zh-CN">中国科学院</b><b lang="en">Chinese Academy of Sciences</b></li>
+          <li><span class="schools__word">Tsinghua</span><b lang="zh-CN">清华大学</b><b lang="en">Tsinghua University</b></li>
+          <li><span class="schools__word">Imperial</span><b lang="zh-CN">帝国理工学院</b><b lang="en">Imperial College London</b></li>
+          <li><img src="assets/img/logos/hust.webp" alt="" width="249" height="220" loading="lazy"><b lang="zh-CN">华中科技大学</b><b lang="en">Huazhong University of Science and Technology</b></li>
+          <li><img src="assets/img/logos/leeds.webp" alt="" width="135" height="220" loading="lazy"><b lang="zh-CN">利兹大学</b><b lang="en">University of Leeds</b></li>
+          <li><span class="schools__word">ECUST</span><b lang="zh-CN">华东理工大学</b><b lang="en">East China University of Science and Technology</b></li>
+          <li><img src="assets/img/logos/nnu.webp" alt="" width="210" height="220" loading="lazy"><b lang="zh-CN">南京师范大学</b><b lang="en">Nanjing Normal University</b></li>
+          <li><span class="schools__word">Tongji</span><b lang="zh-CN">同济大学</b><b lang="en">Tongji University</b></li>
+        </ul>
+      </div>
     </div>
   </section>
   <a class="next next--paper" href="#contact" data-stage="none" data-paper><span class="next__k"><span lang="zh-CN">下一页</span><span lang="en">Next</span></span><span class="next__t"><span lang="zh-CN">与我们合作</span><span lang="en">Work with us</span><span class="arr">→</span></span></a>
 </div>
 
 <!-- ================================================================== CONTACT -->
-<div class="view" data-view="contact" data-title-zh="联系我们 · 赫序科技" data-title-en="Contact · InnoHelix" hidden>
+<div class="view" data-view="contact" data-title-zh="联系我们 · 新碳纪元 InnoHelix" data-title-en="Contact · InnoHelix" hidden>
   <section class="close" data-stage="loop" data-dim="1">
     <div class="wrap close__in">
       <div class="label" data-reveal="fade"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></div>
       <h1 class="d-xl" data-reveal-lines>
-        <span lang="zh-CN"><span class="ln"><span>让废弃物成为燃料，</span></span><span class="ln" style="--i:1"><span class="dim">让碳留在循环中。</span></span></span>
-        <span lang="en"><span class="ln"><span>Turning waste into fuel.</span></span><span class="ln" style="--i:1"><span class="dim">Keeping carbon in the loop.</span></span></span>
+        <span lang="zh-CN"><span class="ln"><span>让废弃碳，</span></span><span class="ln" style="--i:1"><span class="dim">成为未来燃料。</span></span></span>
+        <span lang="en"><span class="ln"><span>Turning waste carbon</span></span><span class="ln" style="--i:1"><span class="dim">into future fuels.</span></span></span>
       </h1>
       <div class="cta-row" data-reveal="up">
         <a class="btn btn--solid" href="#contact" data-mail><span lang="zh-CN">预约技术交流</span><span lang="en">Book a technical call</span><span class="arr">→</span></a>
@@ -606,7 +637,7 @@
         <div class="way" data-reveal="up" style="--i:1"><h5><span lang="zh-CN">联合开发</span><span lang="en">Joint development</span></h5><p lang="zh-CN">针对你的气源与下游路线，定制升级方案。</p><p lang="en">An upgrading solution tuned to your gas and your downstream route.</p></div>
         <div class="way" data-reveal="up" style="--i:2"><h5><span lang="zh-CN">产业合作</span><span lang="en">Industrial partnership</span></h5><p lang="zh-CN">SAF、绿色甲醇与固废资源化项目合作。</p><p lang="en">SAF, green methanol and waste-to-value projects.</p></div>
       </div>
-      <p class="contact-line" data-reveal="fade"><span lang="zh-CN">邮箱　</span><span lang="en">Email　</span><span class="todo" data-mail-text>[待填写联系邮箱]</span></p>
+      <p class="contact-line" data-reveal="fade" data-mail-line hidden><span lang="zh-CN">邮箱　</span><span lang="en">Email　</span><a data-mail-text></a></p>
     </div>
   </section>
 </div>
@@ -615,20 +646,26 @@
 
 <footer class="foot">
   <div class="wrap foot__in">
-    <a href="#home" class="foot__logo"><img src="assets/img/wordmark-light.png" alt="INNOHELIX"></a>
-    <nav aria-label="Footer">
-      <a href="#product"><span lang="zh-CN">产品</span><span lang="en">Product</span></a>
-      <a href="#technology"><span lang="zh-CN">技术</span><span lang="en">Technology</span></a>
-      <a href="#record"><span lang="zh-CN">成果</span><span lang="en">Track record</span></a>
-      <a href="#team"><span lang="zh-CN">团队</span><span lang="en">Team</span></a>
-      <a href="#contact"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></a>
-    </nav>
-    <p class="src">© 2026 赫序科技 InnoHelix · <span lang="zh-CN">产品图为概念渲染。</span><span lang="en">Product imagery is a concept render.</span></p>
+    <div class="foot__top">
+      <div>
+        <a href="#home" class="foot__logo" aria-label="新碳纪元 InnoHelix"><img src="assets/img/wordmark-light.png" alt="INNOHELIX"><span lang="zh-CN">新碳纪元</span></a>
+        <p class="foot__line"><span lang="zh-CN">让废弃碳，成为未来燃料。</span><span lang="en">Turning waste carbon into future fuels.</span></p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#product"><span lang="zh-CN">产品</span><span lang="en">Product</span></a>
+        <a href="#technology"><span lang="zh-CN">技术</span><span lang="en">Technology</span></a>
+        <a href="#record"><span lang="zh-CN">成果</span><span lang="en">Track record</span></a>
+        <a href="#team"><span lang="zh-CN">团队</span><span lang="en">Team</span></a>
+        <a href="#contact"><span lang="zh-CN">联系我们</span><span lang="en">Contact</span></a>
+      </nav>
+    </div>
+    <p class="foot__legal">© 2026 <span lang="zh-CN">新碳纪元 InnoHelix。产品与设备图为概念渲染。</span><span lang="en">InnoHelix. Product and equipment images are concept renders.</span></p>
   </div>
+  <div class="foot__mark" aria-hidden="true">INNOHELIX</div>
 </footer>
 
 <script src="vendor/three.classic.js"></script>
-<script src="js/site.js"></script>
-<script src="js/world.js"></script>
+<script src="js/site.js?v=9"></script>
+<script src="js/world.js?v=9"></script>
 </body>
 </html>

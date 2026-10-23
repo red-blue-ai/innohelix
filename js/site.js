@@ -20,7 +20,6 @@
   function applyLang(l) {
     root.dataset.lang = l;
     root.lang = l === "en" ? "en" : "zh-CN";
-    splitManifesto();
     setTitle();
     onScroll();
   }
@@ -29,21 +28,11 @@
     applyLang(b.dataset.set);
   }));
 
-  /* ---------- contact ---------- */
+  /* ---------- contact: no placeholder is ever shown; the email line appears once an address is set ---------- */
   if (CONTACT_EMAIL) {
     document.querySelectorAll("[data-mail]").forEach((a) => (a.href = "mailto:" + CONTACT_EMAIL));
-    document.querySelectorAll("[data-mail-text]").forEach((s) => { s.textContent = CONTACT_EMAIL; s.classList.remove("todo"); });
-  }
-
-  /* ---------- manifesto: words light up with scroll ---------- */
-  function splitManifesto() {
-    document.querySelectorAll("[data-split]").forEach((p) => {
-      if (p.dataset.done) return;
-      const isZh = p.closest("[lang]").getAttribute("lang") === "zh-CN";
-      const parts = isZh ? Array.from(p.textContent) : p.textContent.split(/(\s+)/);
-      p.innerHTML = parts.map((w) => (/^\s+$/.test(w) || !w ? w : '<span class="w">' + w + "</span>")).join("");
-      p.dataset.done = "1";
-    });
+    document.querySelectorAll("[data-mail-text]").forEach((a) => { a.textContent = CONTACT_EMAIL; a.href = "mailto:" + CONTACT_EMAIL; });
+    document.querySelectorAll("[data-mail-line]").forEach((p) => (p.hidden = false));
   }
 
   /* ---------- reveals + counters (per page, re-armed on every visit) ---------- */
@@ -79,7 +68,6 @@
   }
   function disarm(view) {
     view.querySelectorAll(REVEAL).forEach((el) => el.classList.remove("in"));
-    view.querySelectorAll(".w.lit").forEach((w) => w.classList.remove("lit"));
   }
 
   /* ---------- router ---------- */
@@ -139,7 +127,6 @@
   /* ---------- scroll-linked state ---------- */
   const top = document.getElementById("top");
   const prog = document.querySelector(".progress i");
-  const ghost = document.querySelector(".ghost");
   let lastY = 0, stageKey = "";
   function sectionAt(y) {
     if (!current) return null;
@@ -171,18 +158,18 @@
     }
 
     const home = current === "home";
-    ghost.style.opacity = home ? Math.max(0, 1 - y / (vh * 0.7)).toFixed(3) : "0";
     if (home && !STILL) {
       const hm = views.home.querySelector(".hero__main");
       const k = Math.min(1, y / (vh * 0.85));
       hm.style.opacity = (1 - k).toFixed(3);
       hm.style.transform = "translate3d(0," + (-y * 0.18).toFixed(1) + "px,0)";
-      const man = views.home.querySelector(".manifesto");
-      const r = man.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (vh * 0.8 - r.top) / (r.height * 0.7)));
-      const ws = man.querySelectorAll('[lang="' + (root.dataset.lang === "en" ? "en" : "zh-CN") + '"] .w');
-      const lit = Math.floor(p * ws.length);
-      ws.forEach((w, i) => w.classList.toggle("lit", i < lit));
+      // second screen: the photograph settles in as it arrives (slow push-in plus parallax)
+      const sc = views.home.querySelector(".scale"), r = sc.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < vh) {
+        const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+        sc.style.setProperty("--zoom", (1.16 - 0.14 * p).toFixed(4));
+        sc.style.setProperty("--sy", ((p - 0.5) * -60).toFixed(1) + "px");
+      }
     }
     if (current === "product" && !STILL) {
       const img = views.product.querySelector(".stage__img"), r = img.getBoundingClientRect();
@@ -200,6 +187,25 @@
     const aio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) artIndex(+e.target.dataset.art); }), { rootMargin: "-45% 0px -45% 0px" });
     document.querySelectorAll("[data-art]").forEach((a) => aio.observe(a));
   }
+
+  /* ---------- team: institutions list scrolls by hand, with buttons and the keyboard ---------- */
+  document.querySelectorAll(".schools").forEach((box) => {
+    const list = box.querySelector(".schools__list");
+    const [prev, next] = box.querySelectorAll(".schools__nav button");
+    const sync = () => {
+      const max = list.scrollWidth - list.clientWidth - 2;
+      prev.disabled = list.scrollLeft <= 2;
+      next.disabled = list.scrollLeft >= max;
+      list.classList.toggle("at-end", list.scrollLeft >= max);
+    };
+    box.querySelectorAll(".schools__nav button").forEach((b) => b.addEventListener("click", () => {
+      list.scrollBy({ left: +b.dataset.dir * list.clientWidth * 0.8 });
+    }));
+    list.addEventListener("scroll", sync, { passive: true });
+    addEventListener("resize", sync);
+    new MutationObserver(sync).observe(box.closest(".view"), { attributes: true, attributeFilter: ["hidden"] });
+    sync();
+  });
 
   /* ---------- product hotspots: tap toggles (touch has no hover) ---------- */
   const hots = document.querySelectorAll(".hot");

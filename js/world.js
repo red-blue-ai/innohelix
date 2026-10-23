@@ -1,13 +1,14 @@
 /* InnoHelix — the particle world.
    One Points cloud (≈9k particles) that morphs between six "forms" as the page
    moves through its chapters — the company's story told in matter:
-     helix   → the brand: a double helix of carbon
+     convert → the vision: a turbulent cloud of waste carbon is drawn through the upgrading
+               module and leaves as two clean lanes (H₂, CO) that climb away like a contrail
      chaos   → complex pyrolysis gas: turbulent, impurity-coloured
      reactor → two catalytic beds: dirty stream in, two clean H₂ / CO lanes out
      jet     → what the syngas becomes: aviation fuel
      bridge  → China ↔ Europe
      loop    → carbon kept in the loop
-   Colour carries meaning only: white/silver = clean carbon, rust/amber = impurities & fuel.
+   Colour carries meaning only: white/teal = clean gas, rust/amber = impurities & fuel.
    Classic script; three.js comes from the local vendor/three.classic.js (file:// safe). */
 (async function () {
   "use strict";
@@ -56,7 +57,7 @@
 
   /* ---------- palette (linear-ish, additive) ---------- */
   const WHITE = [0.95, 0.97, 0.96], SILVER = [0.62, 0.67, 0.66], SMOKE = [0.44, 0.48, 0.47];
-  const TEAL = [0.74, 0.79, 0.79], AMBER = [1.0, 0.68, 0.26], RUST = [0.88, 0.38, 0.2]; // "TEAL" is now a cool silver: the interface is monochrome
+  const TEAL = [0.36, 0.86, 0.8], AMBER = [1.0, 0.68, 0.26], RUST = [0.88, 0.38, 0.2]; // brand Technology Teal, lifted to glow on the dark world
   const mix3 = (a, b, k, o, s) => { o[0] = (a[0] + (b[0] - a[0]) * k) * s; o[1] = (a[1] + (b[1] - a[1]) * k) * s; o[2] = (a[2] + (b[2] - a[2]) * k) * s; };
   const sstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
   const dirty = (i, o, s) => {           // impurity palette for the "before" gas
@@ -114,22 +115,37 @@
   /* ---------- forms: each writes target positions + colours for time t ---------- */
   const TAU = Math.PI * 2;
   const FORMS = {
-    helix(t, P, C) {
-      const H = 9.6, R = 1.55, TURNS = 2.3, spin = t * 0.32;
+    convert(t, P, C) {
+      const X0 = 0.4;                                  // the upgrading module sits here
       for (let i = 0; i < N; i++) {
-        const k = i % 20, j = i * 3, u = r1[i];
-        if (k < 16) {
-          const strand = k < 8 ? 0 : 1, th = u * TURNS * TAU + strand * Math.PI + spin;
-          P[j] = Math.cos(th) * R + g1[i] * 0.055; P[j + 1] = (u - 0.5) * H + g3[i] * 0.05; P[j + 2] = Math.sin(th) * R + g2[i] * 0.055;
-          if (strand) mix3(TEAL, WHITE, r2[i] * 0.45, tmp, 0.95); else mix3(WHITE, SILVER, r2[i] * 0.5, tmp, 1.0);
-        } else if (k < 19) {
-          const rung = Math.floor(u * 36), uq = (rung + 0.5) / 36, th = uq * TURNS * TAU + spin, s = 1 - 2 * r2[i];
-          P[j] = Math.cos(th) * R * s + g1[i] * 0.02; P[j + 1] = (uq - 0.5) * H + g3[i] * 0.018; P[j + 2] = Math.sin(th) * R * s + g2[i] * 0.02;
-          if (rung % 4 === 0) mix3(AMBER, WHITE, 0.2, tmp, 0.7); else mix3(SILVER, WHITE, 0.3, tmp, 0.5);
-        } else {
-          const rr = 2.4 + r2[i] * 2.4, a = r3[i] * TAU + t * 0.035;
-          P[j] = Math.cos(a) * rr; P[j + 1] = (u - 0.5) * H * 1.15; P[j + 2] = Math.sin(a) * rr;
-          mix3(SMOKE, SILVER, r4[i], tmp, 0.45);
+        const j = i * 3, g = i % 20;
+        if (g < 2) {                                   // the module: two counter-rotating catalytic rings
+          const ring = r2[i] < 0.5 ? 0 : 1, th = r1[i] * TAU + t * (ring ? -0.5 : 0.5), R = 0.78 + g3[i] * 0.02;
+          P[j] = X0 + (ring ? 0.32 : -0.32) + g1[i] * 0.03; P[j + 1] = Math.cos(th) * R; P[j + 2] = Math.sin(th) * R;
+          mix3(TEAL, WHITE, r3[i] * 0.5, tmp, 1.05);
+        } else if (g < 3) {                            // loose dust around the scene
+          P[j] = (r1[i] - 0.5) * 18; P[j + 1] = (r2[i] - 0.5) * 9; P[j + 2] = (r3[i] - 0.5) * 6 - 1;
+          mix3(SMOKE, SILVER, r4[i], tmp, 0.35);
+        } else {                                       // the stream, left to right
+          const s = (r1[i] + t * 0.03 * (0.8 + r2[i] * 0.4)) % 1, x = -8.5 + s * 17;
+          const pre = 1 - sstep(-8.5, X0, x);          // 1 far upstream, 0 at the module
+          const post = sstep(X0 - 0.2, X0 + 1.2, x);   // 0 before the module, 1 after it
+          // upstream: a wide, turbulent cloud that narrows into the module
+          const w = 0.12 + 2.5 * Math.pow(pre, 1.3);
+          const ty = Math.sin(t * 0.6 + x * 0.9 + r2[i] * 6) * 0.35 * pre, tz = Math.cos(t * 0.5 + x * 0.7 + r3[i] * 6) * 0.3 * pre;
+          const yA = g1[i] * w * 0.62 + ty, zA = g2[i] * w * 0.62 + tz;
+          // downstream: two tight lanes that climb away
+          const lane = r3[i] < 0.5 ? 1 : -1, dx = Math.max(0, x - X0), rise = Math.pow(dx, 1.55) * 0.13;
+          const yB = rise + lane * (0.16 + 0.05 * Math.sin(t * 1.4 + dx * 1.2)) + g1[i] * 0.035;
+          const zB = lane * 0.05 + g2[i] * 0.035;
+          P[j] = x;
+          P[j + 1] = yA * (1 - post) + yB * post;
+          P[j + 2] = zA * (1 - post) + zB * post;
+          // impurity palette upstream, clean white / teal downstream, fading out like a contrail
+          dirty(i, tmp, 0.82);
+          const cr = tmp[0], cg = tmp[1], cb = tmp[2], tgt = lane > 0 ? WHITE : TEAL;
+          const fade = 1 - sstep(5, 8.4, x), br = (0.85 + post * 0.35) * fade;
+          tmp[0] = (cr + (tgt[0] - cr) * post) * br; tmp[1] = (cg + (tgt[1] - cg) * post) * br; tmp[2] = (cb + (tgt[2] - cb) * post) * br;
         }
         C[j] = tmp[0]; C[j + 1] = tmp[1]; C[j + 2] = tmp[2];
       }
@@ -243,7 +259,7 @@
 
   /* ---------- stage placement per chapter (desktop / phone) ---------- */
   const STAGES = {
-    helix:   { form: "helix",   d: [3.0, -0.1, 1.0, 0.12, 0, -0.5],  m: [0.6, 1.9, 0.62, 0.12, 0, -0.35] },
+    convert: { form: "convert", d: [0.5, 1.0, 1.0, 0.16, -0.62, 0.05], m: [0.9, 1.8, 0.5, 0.16, -0.62, 0.3] },
     chaos:   { form: "chaos",   d: [0, 0, 1.0, 0, 0, 0],               m: [0, 0.6, 0.62, 0, 0, 0] },
     reactor: { form: "reactor", d: [1.2, -0.4, 0.92, 0.3, -0.38, 0],   m: [0, 1.4, 0.48, 0.3, -0.38, 0] },
     jet:     { form: "jet",     d: [2.4, 0.3, 0.95, 0, 0, 0],          m: [0.2, 2.0, 0.55, 0, 0, 0] },
@@ -319,7 +335,7 @@
 
 
   /* ---------- state ---------- */
-  let formName = "helix", blend = 1;
+  let formName = "convert", blend = 1;
   const want = { x: 0, y: 0, s: 1, rx: 0, ry: 0, rz: 0, dim: 1 };
   const cur = { x: 0, y: 0, s: 1, rx: 0, ry: 0, rz: 0, dim: 0 };
   function applyStage(detail, instant) {
@@ -335,7 +351,7 @@
     if (instant) Object.assign(cur, want);
   }
   addEventListener("world:stage", (e) => applyStage(e.detail, STILL));
-  const initial = window.__stage || { stage: "helix", dim: 1 };
+  const initial = window.__stage || { stage: "convert", dim: 1 };
   applyStage(initial, true);
   if (!STILL) cur.dim = 0;                        // fade in from black on load
   FORMS[formName](STILL ? 4 : 0, tgtP, tgtC);
@@ -396,7 +412,7 @@
       agit += (Math.min(sv * 0.012, 0.5) - agit) * 0.08;
 
       // exact screen-space interaction: project every particle with the same matrices the GPU uses,
-      // so rotation (the tilted helix), scale and perspective are all accounted for
+      // so rotation, scale and perspective are all accounted for
       group.updateMatrixWorld(); camera.updateMatrixWorld();
       mvp.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse).multiply(group.matrixWorld);
       const M = mvp.elements, G = group.matrixWorld.elements, s2 = cur.s * cur.s, W = innerWidth, H = innerHeight;
