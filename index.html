@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <link href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Semibold.min.css" rel="stylesheet" media="print" onload="this.media='all'">
 <link href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Normal/MiSans-Bold.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="css/site.css?v=10">
+<link rel="stylesheet" href="css/site.css?v=13">
 </head>
 <body>
 
@@ -73,7 +73,24 @@
 <!-- ================================================================== HOME -->
 <div class="view" data-view="home" data-title-zh="新碳纪元 InnoHelix" data-title-en="InnoHelix: turning waste carbon into future fuels">
 
-  <section class="hero" data-stage="convert">
+  <section class="hero" data-stage="none">
+    <div class="plant" id="plant">
+      <canvas class="plant__canvas" aria-label="InnoHelix 工艺全景 3D 场景 / 3D process scene"></canvas>
+      <div class="plant__scrim" aria-hidden="true"></div>
+      <div class="plant__labels"></div>
+      <button class="plant__enter" type="button"><i aria-hidden="true"></i><span lang="zh-CN">进入 3D 工艺全景</span><span lang="en">Explore the 3D plant</span><span class="arr" aria-hidden="true">→</span></button>
+      <div class="plant__ui">
+        <div class="plant__head">
+          <span class="plant__kick"><span lang="zh-CN">工艺全景</span><span lang="en">Process explorer</span></span>
+          <h2><span lang="zh-CN">从固废到航空燃料</span><span lang="en">From waste to jet fuel</span></h2>
+          <p class="plant__note"><span lang="zh-CN">示意场景：InnoHelix 提供第 03–05 步的气体升级模块，其余为上下游装置。</span><span lang="en">Illustrative scene: InnoHelix supplies the gas-upgrading module (steps 03–05); the rest are upstream and downstream units.</span></p>
+        </div>
+        <ol class="plant__rail" aria-label="工艺步骤 / Process steps"></ol>
+        <aside class="plant__card" aria-live="polite"></aside>
+        <button class="plant__close" type="button"><span lang="zh-CN">退出全景</span><span lang="en">Close</span><span aria-hidden="true">×</span></button>
+        <p class="plant__hint"><span lang="zh-CN">拖动旋转 · 滚轮缩放 · 右键平移 · 点击设备查看</span><span lang="en">Drag to orbit · scroll to zoom · right-drag to pan · click equipment</span></p>
+      </div>
+    </div>
     <div class="wrap hero__main">
       <div class="label enter" style="--d:150ms"><span lang="zh-CN">新碳纪元 InnoHelix</span><span lang="en">InnoHelix</span></div>
       <h1 class="d-xxl">
@@ -185,16 +202,11 @@
       <p class="lead product__sub" data-reveal="up" lang="zh-CN">InnoHelix 复杂热解气催化升级模块——接入现有热解 / 气化装置，输出满足下游催化剂要求的稳定合成气中间体。</p>
       <p class="lead product__sub" data-reveal="up" lang="en">The InnoHelix Complex Pyrolysis Gas Upgrading Module plugs into existing pyrolysis and gasification units and delivers a stable syngas intermediate that downstream catalysts can trust.</p>
 
-      <div class="stage" data-reveal="scale">
-        <img class="stage__img" src="assets/img/module.webp" alt="InnoHelix 复杂热解气催化升级模块 / the upgrading module" width="1500" height="998">
-        <div class="hot" style="--x:28.1%;--y:40.8%;--i:0"><button type="button" aria-label="01">1</button><span class="lab"><span lang="zh-CN">两级立式催化反应器</span><span lang="en">Two-stage vertical catalytic reactors</span></span></div>
-        <div class="hot" style="--x:57.4%;--y:55.7%;--i:1"><button type="button" aria-label="02">2</button><span class="lab"><span lang="zh-CN">换热与气体调质单元</span><span lang="en">Heat exchange &amp; gas conditioning</span></span></div>
-        <div class="hot" style="--x:34.5%;--y:12.9%;--i:2"><button type="button" aria-label="03">3</button><span class="lab"><span lang="zh-CN">管路、阀门及压力仪表</span><span lang="en">Piping, valves &amp; pressure instruments</span></span></div>
-        <div class="hot" style="--x:84%;--y:49.8%;--i:3"><button type="button" aria-label="04">4</button><span class="lab"><span lang="zh-CN">气体采样与控制面板</span><span lang="en">Gas sampling &amp; control panel</span></span></div>
-        <div class="hot" style="--x:93.2%;--y:53.7%;--i:4"><button type="button" aria-label="05">5</button><span class="lab"><span lang="zh-CN">独立电气控制柜</span><span lang="en">Electrical control cabinet</span></span></div>
-        <div class="hot" style="--x:42.2%;--y:77.7%;--i:5"><button type="button" aria-label="06">6</button><span class="lab"><span lang="zh-CN">一体化可运输底座</span><span lang="en">Integrated transportable skid</span></span></div>
+      <div class="stage stage--3d" data-reveal="scale">
+        <iframe class="stage__frame" data-src="machine/reformer.html?site" title="InnoHelix 两级催化重整模块 3D 剖视 / 3D cutaway of the upgrading module"></iframe>
+        <a class="stage__full" href="machine/reformer.html" target="_blank" rel="noopener"><span lang="zh-CN">全屏查看</span><span lang="en">Full screen</span><span class="arr" aria-hidden="true">↗</span></a>
       </div>
-      <p class="src stage__cap"><span lang="zh-CN">点击编号，查看模块组成</span><span lang="en">Tap a number to explore the module</span></p>
+      <p class="src stage__cap"><span lang="zh-CN">拖动旋转 · 点击后可滚轮缩放 · 下方按钮可剖切、拆解、模拟旁通一段。示意模型，读数由简化工艺模型实时计算。</span><span lang="en">Drag to orbit · click, then scroll to zoom · cut it open, take it apart, bypass stage 1. Illustrative model; readings are computed live by a simplified process model.</span></p>
 
       <div class="chain" data-reveal="up">
         <div class="node"><span class="t"><span lang="zh-CN">复杂废弃物</span><span lang="en">Complex waste</span></span><span class="s"><span lang="zh-CN">废塑料、废轮胎等碳基固废</span><span lang="en">Waste plastics, tyres and other carbon-based solids</span></span></div>
@@ -652,7 +664,9 @@
 </footer>
 
 <script src="vendor/three.classic.js"></script>
-<script src="js/site.js?v=10"></script>
-<script src="js/world.js?v=10"></script>
+<script src="js/site.js?v=13"></script>
+<script src="js/world.js?v=12"></script>
+<script src="js/plant.js?v=13"></script>
+<script src="js/product3d.js?v=13"></script>
 </body>
 </html>

@@ -172,9 +172,11 @@
       }
     }
     if (current === "product" && !STILL) {
-      const img = views.product.querySelector(".stage__img"), r = img.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
-      img.style.transform = "scale(" + (0.88 + 0.12 * p).toFixed(4) + ")";
+      const img = views.product.querySelector(".stage__img, .stage--3d");
+      if (img) {
+        const r = img.getBoundingClientRect(), p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
+        img.style.transform = "scale(" + (0.88 + 0.12 * p).toFixed(4) + ")";
+      }
     }
   }
   addEventListener("scroll", onScroll, { passive: true });
