@@ -1,11 +1,11 @@
 /* Product page: the live 3D cutaway of the module (machine/reformer.html in an iframe).
    Loads as it nears the viewport, tells the page inside when it is actually on screen (it renders only then),
-   follows the language switch, and hides the custom cursor ring while the pointer is inside the frame. */
+   and follows the language switch. */
 (function () {
   "use strict";
   const frame = document.querySelector(".stage__frame");
   if (!frame) return;
-  const root = document.documentElement, cur = document.querySelector(".cursor"), full = document.querySelector(".stage__full");
+  const root = document.documentElement, full = document.querySelector(".stage__full");
   const lang = () => (root.dataset.lang === "en" ? "en" : "zh");
   let loaded = "", near = false, onScreen = false;
 
@@ -26,9 +26,4 @@
   document.addEventListener("visibilitychange", tell);
   new MutationObserver(() => { syncLink(); if (loaded && loaded !== lang()) { loaded = ""; if (near) load(); } }).observe(root, { attributes: true, attributeFilter: ["data-lang"] });
   syncLink();
-
-  if (cur) {
-    frame.addEventListener("mouseenter", () => { cur.style.opacity = "0"; });
-    frame.addEventListener("mouseleave", () => { cur.style.opacity = "1"; });
-  }
 })();

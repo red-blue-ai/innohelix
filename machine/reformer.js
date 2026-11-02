@@ -384,10 +384,33 @@
   addEventListener('keydown', (e) => { if (e.key === 'Escape' && IN_SITE) parent.postMessage({ type: 'innohelix:machine-close' }, '*') })
 
   lab.bloom.strength = 0.3
-  // inline on the product page: render only while on screen, wheel zoom only after a click, vertical swipes scroll the page
-  let visible = !INLINE, started = false
+  // ------------------------------------------------------------------ performance
+  // capped resolution; no ambient occlusion pass (a second full render of the scene); the machine stands still, so the shadow map and
+  // the floor contact shadow are redrawn only while something moves (build, explode, cut) instead of every frame
+  const rr = lab.renderer, pr = Math.min(devicePixelRatio || 1, 1.25)
+  rr.setPixelRatio(pr); lab.composer.setPixelRatio(pr); lab._resize()
+  lab.ao.enabled = false
+  rr.shadowMap.autoUpdate = false
+  const contact = lab._contact.update.bind(lab._contact)
+  let shadowKey = ''
+  lab._contact.update = () => {
+    const k = `${lab.state.explode.toFixed(3)}|${lab.state.cut.toFixed(3)}|${(lab._assembly ?? 0).toFixed(3)}`
+    if (k !== shadowKey) { shadowKey = k; contact(); rr.shadowMap.needsUpdate = true }
+  }
+  // inline on the product page: render only while on screen, at 30 fps when nothing is being touched or animating,
+  // wheel zoom only after a click, vertical swipes scroll the page
+  let visible = !INLINE, started = false, acc = 0, touched = 0
   const render = lab.render.bind(lab)
-  lab.render = (dt) => { if (visible && !document.hidden) render(dt) }
+  const busy = () => performance.now() - touched < 1500 || (lab._assembly ?? 0) > 0 || Object.keys(lab.target).some((k) => Math.abs(lab.state[k] - lab.target[k]) > 1e-3)
+  lab.render = (dt) => {
+    if (!visible || document.hidden) return
+    acc += dt
+    if (INLINE && acc < 1 / 31 && !busy()) return
+    render(Math.min(acc, 0.05)); acc = 0
+  }
+  const poke = () => { touched = performance.now() }
+  lab.controlsOrbit.addEventListener('start', poke); lab.controlsOrbit.addEventListener('change', poke)
+  lab.ui.addEventListener('input', poke); lab.ui.addEventListener('click', poke)
   if (INLINE) {
     const orbit = lab.controlsOrbit, el = lab.renderer.domElement
     orbit.enableZoom = false; el.style.touchAction = 'pan-y'

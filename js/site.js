@@ -1,6 +1,6 @@
 /* InnoHelix — page shell (classic script, no third-party libraries, works from file://).
    Owns: routing between pages, page transitions, language, loader, reveals,
-   counters, section → particle-world signalling, top bar state, cursor. */
+   counters, section → particle-world signalling, top bar state. */
 (function () {
   "use strict";
 
@@ -172,7 +172,8 @@
       }
     }
     if (current === "product" && !STILL) {
-      const img = views.product.querySelector(".stage__img, .stage--3d");
+      // the photo version eases in on scroll; the live 3D frame is left alone (rescaling a WebGL iframe every scroll frame stutters)
+      const img = views.product.querySelector(".stage__img");
       if (img) {
         const r = img.getBoundingClientRect(), p = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.9)));
         img.style.transform = "scale(" + (0.88 + 0.12 * p).toFixed(4) + ")";
@@ -217,23 +218,7 @@
     if (on) h.classList.add("on");
   }));
 
-  /* ---------- custom cursor: switched on by the first real mouse movement ---------- */
-  const cur = document.querySelector(".cursor"), ring = cur.querySelector(".ring"), dot = cur.querySelector(".dot");
-  let mx = -100, my = -100, rx = -100, ry = -100, cursorOn = false;
-  addEventListener("pointermove", (e) => {
-    if (e.pointerType !== "mouse") return;
-    mx = e.clientX; my = e.clientY;
-    if (!cursorOn) { cursorOn = true; rx = mx; ry = my; root.classList.add("has-cursor"); requestAnimationFrame(loop); }
-    dot.style.transform = "translate(" + mx + "px," + my + "px)";
-  }, { passive: true });
-  function loop() {
-    rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
-    ring.style.transform = "translate(" + rx + "px," + ry + "px)";
-    requestAnimationFrame(loop);
-  }
-  document.addEventListener("pointerover", (e) => cur.classList.toggle("hot", !!e.target.closest("a, button, .hot, .tile")));
-  document.addEventListener("mouseleave", () => { cur.style.opacity = "0"; });
-  document.addEventListener("mouseenter", () => { cur.style.opacity = "1"; });
+  /* ---------- buttons: highlight follows the pointer ---------- */
   document.querySelectorAll(".btn").forEach((b) => b.addEventListener("pointermove", (e) => {
     const r = b.getBoundingClientRect();
     b.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");

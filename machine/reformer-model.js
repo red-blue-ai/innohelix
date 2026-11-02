@@ -100,7 +100,7 @@
     function hpipe(pts, rO, rI, o) {
       o = o || {}
       const curve = new THREE.CatmullRomCurve3(bendPts(pts, o.bend), false, 'centripetal')
-      const L = curve.getLength(), seg = Math.max(8, Math.ceil(L / 0.02)), rad = o.radial ?? 28
+      const L = curve.getLength(), seg = Math.max(8, Math.ceil(L / 0.03)), rad = o.radial ?? 20
       const parts = [new THREE.TubeGeometry(curve, seg, rO, rad, false)]
       if (rI > 0) { const inner = new THREE.TubeGeometry(curve, seg, rI, rad, false); flip(inner); parts.push(inner) }
       for (const [t, s] of [[0, -1], [1, 1]]) {
@@ -271,10 +271,10 @@
       add(slab(R.bed0, R.bed1, R.n === 1 ? M.bedDark1 : M.bedDark2), { parent: g, name: R.n === 1 ? 'Sacrificial bed' : 'Main reforming bed' })
       if (!lite) {
         const pg = R.n === 1 ? new THREE.IcosahedronGeometry(0.0052, 0) : new THREE.CylinderGeometry(0.006, 0.006, 0.0105, 7)
-        const pel = packed(pg, catM, { r: RI, y0: R.bed0, y1: R.bed1, d: R.n === 1 ? 0.0105 : 0.0122, z0: -0.022, seed: 11 + R.n, aniso: R.n === 1, jit: R.n === 1 ? 0.25 : 0.06 })
+        const pel = packed(pg, catM, { r: RI, y0: R.bed0, y1: R.bed1, d: R.n === 1 ? 0.0105 : 0.0122, z0: -0.013, seed: 11 + R.n, aniso: R.n === 1, jit: R.n === 1 ? 0.25 : 0.06 })
         const bg = new THREE.SphereGeometry(0.0095, 9, 6)
-        const b1 = packed(bg, ballM, { r: RI, y0: R.bed1, y1: R.bed1 + 0.08, d: 0.019, z0: -0.02, seed: 21 + R.n })
-        const b2 = packed(bg, ballM, { r: RI, y0: R.bed0 - 0.1, y1: R.bed0, d: 0.019, z0: -0.02, seed: 31 + R.n })
+        const b1 = packed(bg, ballM, { r: RI, y0: R.bed1, y1: R.bed1 + 0.08, d: 0.019, z0: -0.012, seed: 21 + R.n })
+        const b2 = packed(bg, ballM, { r: RI, y0: R.bed0 - 0.1, y1: R.bed0, d: 0.019, z0: -0.012, seed: 31 + R.n })
         const pack = new THREE.Group(); pack.add(pel, b1, b2)
         add(pack, { parent: g, name: R.n === 1 ? 'Tar cracking granules' : 'Ni reforming catalyst', count: pel.count + b1.count + b2.count, shadow: false })
         dyn.pellets.push({ n: R.n, mesh: pel, all: [pel, b1, b2], y0: R.bed0, y1: R.bed1 })
@@ -327,7 +327,7 @@
     const jacket = [[R1.x, 0.32, 0], [R1.x, YX, 0], [XC, YX, 0], [XC, YCH, 0], [R2.x, YCH, 0], [R2.x, R2.y1 + 0.21, 0]]
     piping.add(mesh(hpipe(P.cross, NR, NI), pipeM), mesh(hpipe(jacket, 0.085, NR + 0.0005), M.wool), mesh(hpipe(jacket, 0.0875, 0.085), M.clad))
     // steam line, insulated
-    piping.add(mesh(hpipe(P.steam, 0.0167, 0.0137, { bend: 0.06 }), pipeM), mesh(hpipe(P.steam.slice(0, -1), 0.04, 0.0172, { bend: 0.06 }), M.wool), mesh(hpipe(P.steam.slice(0, -1), 0.0415, 0.04, { bend: 0.06 }), M.clad))
+    piping.add(mesh(hpipe(P.steam, 0.0167, 0.0137, { bend: 0.06, radial: 12 }), pipeM), mesh(hpipe(P.steam.slice(0, -1), 0.04, 0.0172, { bend: 0.06, radial: 14 }), M.wool), mesh(hpipe(P.steam.slice(0, -1), 0.0415, 0.04, { bend: 0.06, radial: 14 }), M.clad))
     // flanged joints
     const fp = (o, ax, r, op) => piping.add(...flangePair(o, ax, r, op))
     fp([-1.9, YF, 0], [1, 0, 0])
@@ -506,7 +506,7 @@
       anchors.analyser = { obj: an, at: [0, yb + h - 0.25, d / 2] }
       // sample lines: raw gas tap on the riser, syngas tap after the cooler (back along the skid edge)
       piping.add(mesh(GEO.pipe(bendPts([[XR, 0.42, -NR], [XR, 0.42, -0.3], [-1.26, 0.42, -0.3], [-1.26, 0.95, -0.3], [-1.26, 0.95, -0.66], [-1.32, 0.95, -0.66]], 0.03, 0.01), 0.0045, { seg: 160, radial: 8 }), M.steel))
-      piping.add(mesh(GEO.pipe(bendPts([[1.84, CX.y + NR, 0], [1.84, CX.y + 0.1, 0], [1.84, CX.y + 0.1, -0.3], [1.84, 0.2, -0.3], [1.84, 0.2, -0.925], [-1.6, 0.2, -0.925], [-1.6, 0.25, -0.925]], 0.04, 0.02), 0.0045, { seg: 600, radial: 8 }), M.steel))
+      piping.add(mesh(GEO.pipe(bendPts([[1.84, CX.y + NR, 0], [1.84, CX.y + 0.1, 0], [1.84, CX.y + 0.1, -0.3], [1.84, 0.2, -0.3], [1.84, 0.2, -0.925], [-1.6, 0.2, -0.925], [-1.6, 0.25, -0.925]], 0.04, 0.02), 0.0045, { seg: 300, radial: 6 }), M.steel))
     }
     {
       const cb = new THREE.Group(), w = 0.92, h = 1.82, d = 0.32, yb = SK + 0.1
@@ -537,7 +537,7 @@
         [[0.1, yb + h + 0.03, ZC], [0.1, 2.18, ZC], [R2.x, 2.18, -0.42], [R2.x, (R2.h0 + R2.h1) / 2 + 0.24, -0.35]],
         [[0.24, yb + h + 0.03, ZC], [0.24, 2.27, ZC], [1.26, 2.27, ZC], [1.26, 0.9, -0.6], [1.26, 0.72, -0.6]],
       ]
-      for (const c of conduits) piping.add(mesh(GEO.pipe(bendPts(c, 0.1, 0.02), 0.013, { seg: 220, radial: 10 }), M.conduit))
+      for (const c of conduits) piping.add(mesh(GEO.pipe(bendPts(c, 0.1, 0.02), 0.013, { seg: 120, radial: 8 }), M.conduit))
     }
 
     // ---------------------------------------------------------------- flow paths for the streaks (machine metres)
